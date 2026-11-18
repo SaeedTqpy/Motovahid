@@ -1,0 +1,55 @@
+name: WordPress + WooCommerce integration
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  wordpress-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare isolated local configuration
+        run: cp .env.example .env
+      - name: Start WordPress and MariaDB
+        run: docker compose up -d --wait
+      - name: Install WP-CLI inside the app container
+        run: |
+          curl -fLSs --retry 3 -o /tmp/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          docker compose cp /tmp/wp-cli.phar wordpress:/tmp/wp-cli.phar
+          docker compose exec -T wordpress php /tmp/wp-cli.phar --info
+      - name: Install WordPress and WooCommerce
+        run: |
+          docker compose exec -T wordpress php /tmp/wp-cli.phar core install \
+            --url=http://localhost:8080 --title="Vahid Tuning Integration" \
+            --admin_user=ciadmin --admin_password=ci-local-test-password \
+            --admin_email=ci@example.invalid --skip-email --allow-root
+          docker compose exec -T wordpress php /tmp/wp-cli.phar plugin install woocommerce --activate --allow-root
+          docker compose exec -T wordpress php /tmp/wp-cli.phar theme activate vahidtuning --allow-root
+          docker compose exec -T wordpress php /tmp/wp-cli.phar plugin activate vahidtuning-demo --allow-root
+      - name: Import 18 Persian products with secure admin action
+        run: |
+          docker compose exec -T wordpress php /tmp/wp-cli.phar eval \
+            'wp_set_current_user(1); $_REQUEST["vt_demo_nonce"] = wp_create_nonce("vt_import_demo"); do_action("admin_post_vt_import_demo");' --allow-root
+      - name: Assert product catalog and real variations
+        run: |
+          docker compose exec -T wordpress php /tmp/wp-cli.phar eval '
+            $count = (int) wp_count_posts("product")->publish;
+            if ($count !== 18) { throw new Exception("Expected 18 demo products, got " . $count); }
+            $id = wc_get_product_id_by_sku("VT-H001");
+            $product = wc_get_product($id);
+            if (!$product || !$product->is_type("variable")) { throw new Exception("Missing variable helmet"); }
+            if (count($product->get_children()) !== 3) { throw new Exception("Helmet needs three size variations"); }
+            if (get_option("woocommerce_currency") !== "IRT") { throw new Exception("Toman currency not configured"); }
+            echo "Passed: 18 Persian products, three sizes, Toman";
+          ' --allow-root
+      - name: Assert storefront renders over HTTP
+        run: |
+          curl -fsSL --retry 8 --retry-delay 3 http://localhost:8080/ | grep -q "وحید تیونینگ"
+          echo "Homepage rendered"
+      - name: Inspect logs on failure
+        if: failure()
+        run: docker compose logs --tail=160
+      - name: Remove test containers
+        if: always()
+        run: docker compose down -v
