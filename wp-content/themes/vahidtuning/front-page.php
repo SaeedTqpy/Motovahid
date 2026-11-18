@@ -53,7 +53,51 @@ $categories = array(
     <div class="vt-section-heading"><div><p class="vt-section-overline"><span></span> انتخاب فروشگاه / ۰۲</p><h2>تجهیزات <span>پیشنهادی.</span></h2><p>منتخب فروشگاه برای شروع یک ماجراجویی تازه.</p></div><a class="vt-text-link vt-section-link" href="<?php echo esc_url( vt_shop_url() ); ?>">ورود به فروشگاه <?php vt_icon( 'arrow' ); ?></a></div>
     <?php if ( vt_has_woocommerce() ) : ?>
         <?php
-        $featured_products = new WP_Query( array( 'post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => 6, 'tax_query' => array( array( 'taxonomy' => 'product_visibility', 'field' => 'name', 'terms' => array( 'exclude-from-catalog' ), 'operator' => 'NOT IN' ) ) ) );
+        // Curate one visible item per major category, then fill any gaps with other products.
+// This prevents a new batch of spare parts from crowding out helmets and protection.
+        $featured_ids = array();
+        foreach ( array( 'helmets', 'goggles', 'gloves', 'boots', 'armor', 'parts' ) as $featured_category ) {
+            $candidate_ids = wc_get_products( array(
+                'status'   => 'publish',
+                'category' => array( $featured_category ),
+                'limit'    => 5,
+                'orderby'  => 'date',
+                'order'    => 'DESC',
+                'return'   => 'ids',
+            ) );
+            foreach ( $candidate_ids as $candidate_id ) {
+                $candidate_product = wc_get_product( $candidate_id );
+                if ( $candidate_product && $candidate_product->is_visible() ) {
+                    $featured_ids[] = (int) $candidate_id;
+                    break;
+                }
+            }
+        }
+        if ( count( $featured_ids ) < 6 ) {
+            $recent_ids = wc_get_products( array(
+                'status'  => 'publish',
+                'limit'   => 24,
+                'orderby' => 'date',
+                'order'   => 'DESC',
+                'return'  => 'ids',
+                'exclude' => $featured_ids,
+            ) );
+            foreach ( $recent_ids as $candidate_id ) {
+                $candidate_product = wc_get_product( $candidate_id );
+                if ( $candidate_product && $candidate_product->is_visible() ) {
+                    $featured_ids[] = (int) $candidate_id;
+                    if ( count( $featured_ids ) === 6 ) { break; }
+                }
+            }
+        }
+        $featured_products = new WP_Query( array(
+            'post_type'           => 'product',
+            'post_status'         => 'publish',
+            'post__in'            => $featured_ids ? $featured_ids : array( 0 ),
+            'orderby'             => 'post__in',
+            'posts_per_page'      => 6,
+            'ignore_sticky_posts' => true,
+        ) );
         if ( $featured_products->have_posts() ) : ?>
         <ul class="products vt-product-grid columns-3">
             <?php while ( $featured_products->have_posts() ) : $featured_products->the_post(); wc_get_template_part( 'content', 'product' ); endwhile; ?>
