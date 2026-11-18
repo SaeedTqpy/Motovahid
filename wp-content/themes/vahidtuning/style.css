@@ -344,3 +344,20 @@ ul.products.vt-product-grid,.woocommerce ul.products.vt-product-grid,.woocommerc
   .woocommerce div.product .woocommerce-tabs ul.tabs{padding:0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* WooCommerce classic-specific selectors have high specificity; normalize card anatomy. */
+.woocommerce ul.products li.product a.vt-product-image img{width:100%;height:100%;object-fit:contain;margin:0;padding-block:0}
+.woocommerce ul.products li.product a.vt-product-image img.vt-product-placeholder{padding:23px}
+.woocommerce ul.products li.product .vt-product-add .button{margin:0;width:38px;height:38px;padding:0;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:3px;font-size:0}
+.woocommerce ul.products li.product .vt-product-add .button:hover{background:#9dc731;color:var(--ink)}
+.woocommerce ul.products li.product .vt-product-add .button::after{content:"+";display:block;font:400 25px/1 Arial,sans-serif}
+.vt-single-placeholder{background:#edf1e9;border-radius:8px;overflow:hidden}
+.vt-single-placeholder img{display:block;width:100%;height:auto}
+.vt-search-result{padding:20px 0;border-bottom:1px solid var(--line)}
+.vt-search-result h2{font-size:21px;font-weight:900;margin-bottom:7px}
+.vt-search-result p{color:var(--muted);font-size:13px}
+.vt-empty-products .vt-btn{margin-top:22px}
+@media(max-width:560px){
+ .woocommerce ul.products li.product .vt-product-add .button{width:30px;height:30px}
+ .woocommerce ul.products li.product a.vt-product-image img.vt-product-placeholder{padding:10px}
+}
