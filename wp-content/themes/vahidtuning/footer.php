@@ -10,7 +10,7 @@ $address = get_theme_mod( 'vt_address', '' );
     <div class="vt-container">
         <div class="vt-footer-top">
             <div class="vt-footer-about">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-brand vt-brand-footer"><span class="vt-brand-symbol"><span>V</span><i></i></span><span class="vt-brand-copy"><strong>وحید تیونینگ</strong><small>VAHID TUNING</small></span></a>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-brand vt-brand-footer"><span class="vt-brand-symbol"><span>V</span><i></i></span><span class="vt-brand-copy"><strong>وحید تیونینگ</strong><small>تجهیزات موتور تریل و آفرود</small></span></a>
                 <p>از اولین پیچ تا آخرین مسیر خاکی؛ فروشگاه تخصصی تجهیزات موتور تریل و آفرود.</p>
                 <div class="vt-footer-socials">
                     <?php if ( $instagram ) : ?><a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $instagram ); ?>" aria-label="اینستاگرام"><?php vt_icon( 'instagram' ); ?></a><?php endif; ?>
@@ -25,7 +25,7 @@ $address = get_theme_mod( 'vt_address', '' );
                 <?php if ( ! $phone && ! $address ) : ?><p>اطلاعات تماس از بخش «نمایش ← سفارشی‌سازی» قابل تنظیم است.</p><?php endif; ?>
             </div>
         </div>
-        <div class="vt-footer-bottom"><span>© <?php echo esc_html( wp_date( 'Y' ) ); ?> وحید تیونینگ. تمامی حقوق محفوظ است.</span><span class="vt-footer-mark">BUILT FOR THE DIRT. / VT — 01</span></div>
+        <div class="vt-footer-bottom"><span>© <?php echo esc_html( wp_date( 'Y' ) ); ?> وحید تیونینگ. تمامی حقوق محفوظ است.</span><span class="vt-footer-mark">برای مسیرهای خاکی ساخته شده</span></div>
     </div>
 </footer>
 <?php wp_footer(); ?>

@@ -5,7 +5,7 @@ $is_product_search = vt_has_woocommerce() && ( 'product' === get_query_var( 'pos
 ?>
 <main id="main-content" class="vt-page vt-container">
     <div class="vt-page-head">
-        <p class="vt-section-overline"><span></span> SEARCH / VAHID TUNING</p>
+        <p class="vt-section-overline"><span></span> جستجوی فروشگاه</p>
         <h1>نتایج جستجو برای «<?php echo esc_html( get_search_query() ); ?>»</h1>
     </div>
     <?php if ( have_posts() ) : ?>

@@ -8,7 +8,7 @@ get_header( 'shop' );
 do_action( 'woocommerce_before_main_content' );
 ?>
 <header class="woocommerce-products-header vt-catalog-header">
-    <p class="vt-section-overline"><span></span> TRAIL EQUIPMENT / SHOP</p>
+    <p class="vt-section-overline"><span></span> فروشگاه تجهیزات تریل</p>
     <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
         <h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
     <?php endif; ?>

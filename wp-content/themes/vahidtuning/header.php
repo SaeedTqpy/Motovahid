@@ -11,12 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="vt-skip-link" href="#main-content">رفتن به محتوای اصلی</a>
-<div class="vt-announcement"><div class="vt-container"><span class="vt-announcement-dot"></span><?php echo esc_html( get_theme_mod( 'vt_announcement', 'آماده برای مسیرهای سخت؛ خرید آسان تجهیزات آفرود' ) ); ?><span class="vt-announcement-end">VAHID TUNING / OFFROAD GEAR</span></div></div>
+<div class="vt-announcement"><div class="vt-container"><span class="vt-announcement-dot"></span><?php echo esc_html( get_theme_mod( 'vt_announcement', 'آماده برای مسیرهای سخت؛ خرید آسان تجهیزات آفرود' ) ); ?><span class="vt-announcement-end">فروشگاه تخصصی تجهیزات تریل و آفرود</span></div></div>
 <header class="vt-header" id="vt-header">
     <div class="vt-container vt-header-inner">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-brand" aria-label="وحید تیونینگ، صفحه اصلی">
             <span class="vt-brand-symbol"><span>V</span><i></i></span>
-            <span class="vt-brand-copy"><strong>وحید تیونینگ</strong><small>VAHID TUNING</small></span>
+            <span class="vt-brand-copy"><strong>وحید تیونینگ</strong><small>تجهیزات موتور تریل و آفرود</small></span>
         </a>
         <nav class="vt-desktop-nav" aria-label="ناوبری اصلی">
             <?php if ( has_nav_menu( 'primary' ) ) : ?>
