@@ -41,10 +41,22 @@
       filterButton.setAttribute('aria-expanded', String(next));
     });
   }
-  document.addEventListener('keydown', function (event) {
-    if (event.key !== 'Escape') return;
+  // Dropdowns overlay the page; close them when users click outside the header.
+  document.addEventListener('click', function (event) {
+    var header = document.getElementById('vt-header');
+    if (!header || header.contains(event.target)) return;
     setExpanded(menuButton, mobileMenu, false);
     setExpanded(searchButton, searchPanel, false);
+  });
+  // Escape returns focus to whichever toggle is currently open.
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape') return;
+    var wasMenuOpen = menuButton && menuButton.getAttribute('aria-expanded') === 'true';
+    var wasSearchOpen = searchButton && searchButton.getAttribute('aria-expanded') === 'true';
+    setExpanded(menuButton, mobileMenu, false);
+    setExpanded(searchButton, searchPanel, false);
+    if (wasSearchOpen) searchButton.focus();
+    else if (wasMenuOpen) menuButton.focus();
     if (filterButton && filterPanel) {
       filterPanel.classList.remove('is-open');
       filterButton.setAttribute('aria-expanded', 'false');
@@ -52,7 +64,7 @@
     }
   });
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 820) {
+    if (window.innerWidth > 1100) {
       setExpanded(menuButton, mobileMenu, false);
       if (filterPanel) filterPanel.hidden = false;
     } else if (filterPanel && !filterPanel.classList.contains('is-open')) {
