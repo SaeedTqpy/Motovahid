@@ -53,7 +53,13 @@ add_action( 'customize_register', 'vt_customize' );
 
 function vt_has_woocommerce() { return class_exists( 'WooCommerce' ); }
 function vt_shop_url() {
-    return vt_has_woocommerce() ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/?post_type=product' );
+    if ( vt_has_woocommerce() ) {
+        $shop_id = wc_get_page_id( 'shop' );
+        if ( $shop_id > 0 ) { return get_permalink( $shop_id ); }
+        $archive = get_post_type_archive_link( 'product' );
+        if ( $archive ) { return $archive; }
+    }
+    return home_url( '/?post_type=product' );
 }
 function vt_category_url( $slug ) {
     $term = get_term_by( 'slug', $slug, 'product_cat' );
