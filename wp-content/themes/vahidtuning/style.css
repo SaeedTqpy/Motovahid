@@ -361,3 +361,14 @@ ul.products.vt-product-grid,.woocommerce ul.products.vt-product-grid,.woocommerc
  .woocommerce ul.products li.product .vt-product-add .button{width:30px;height:30px}
  .woocommerce ul.products li.product a.vt-product-image img.vt-product-placeholder{padding:10px}
 }
+
+/* Persian brand metadata: keep secondary typography natural in RTL. */
+.vt-eyebrow,.vt-section-overline,.vt-category-text small,.vt-hero-footnote,
+.vt-hero-index,.vt-hero-bottom span:first-child,.vt-footer-mark,.vt-hero-serial,
+.vt-brand-copy small,.vt-announcement-end{
+  font-family:Vazirmatn,Tahoma,sans-serif;letter-spacing:0;direction:rtl;
+}
+.vt-eyebrow,.vt-section-overline{justify-content:flex-start}
+.vt-hero-footnote{justify-content:flex-start}
+.vt-hero-oversized,.vt-promo-art span{font-family:Vazirmatn,Tahoma,sans-serif;letter-spacing:-3px}
+.vt-category-text small{font-size:10px;font-weight:700}
