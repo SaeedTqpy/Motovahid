@@ -32,7 +32,7 @@ do_action( 'woocommerce_before_main_content' );
             endif; ?>
         </ul>
         <h3>محدوده قیمت</h3>
-        <form method="get" action="<?php echo esc_url( is_shop() ? vt_shop_url() : get_term_link( get_queried_object() ) ); ?>">
+        <form method="get" action="<?php echo esc_url( is_tax( 'product_cat' ) ? get_term_link( get_queried_object() ) : vt_shop_url() ); ?>">
             <div class="vt-price-fields">
                 <label>از (تومان)<input type="number" inputmode="numeric" min="0" name="min_price" value="<?php echo isset( $_GET['min_price'] ) ? esc_attr( wc_clean( wp_unslash( $_GET['min_price'] ) ) ) : ''; ?>" placeholder="حداقل"></label>
                 <label>تا (تومان)<input type="number" inputmode="numeric" min="0" name="max_price" value="<?php echo isset( $_GET['max_price'] ) ? esc_attr( wc_clean( wp_unslash( $_GET['max_price'] ) ) ) : ''; ?>" placeholder="حداکثر"></label>
