@@ -6,7 +6,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'VT_VERSION', '1.0.0' );
+define( 'VT_VERSION', '1.0.1' );
 
 function vt_setup() {
     load_theme_textdomain( 'vahidtuning', get_template_directory() . '/languages' );
@@ -26,6 +26,7 @@ add_action( 'after_setup_theme', 'vt_setup' );
 function vt_enqueue_assets() {
     wp_enqueue_style( 'vt-fonts', 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap', array(), null );
     wp_enqueue_style( 'vt-style', get_stylesheet_uri(), array( 'vt-fonts' ), VT_VERSION );
+    wp_enqueue_style( 'vt-layout-polish', get_template_directory_uri() . '/assets/css/polish.css', array( 'vt-style' ), VT_VERSION );
     wp_enqueue_script( 'vt-storefront', get_template_directory_uri() . '/assets/js/storefront.js', array(), VT_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'vt_enqueue_assets' );
