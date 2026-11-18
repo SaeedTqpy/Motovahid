@@ -133,6 +133,7 @@ add_action( 'admin_post_vt_import_demo', function() {
     }
     // These settings are applied only on explicit admin action; real store settings remain editable.
     update_option( 'woocommerce_currency', 'IRT' );
+    update_option( 'woocommerce_currency_pos', 'right_space' );
     update_option( 'woocommerce_price_num_decimals', '0' );
     update_option( 'woocommerce_price_thousand_sep', '٬' );
     update_option( 'woocommerce_price_decimal_sep', '٫' );
