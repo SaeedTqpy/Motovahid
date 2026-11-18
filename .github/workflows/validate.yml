@@ -1,0 +1,24 @@
+name: Validate storefront source
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PHP syntax check
+        run: |
+          find wp-content -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: JavaScript syntax check
+        run: node --check wp-content/themes/vahidtuning/assets/js/storefront.js
+      - name: SVG parse check
+        run: |
+          python3 - <<'PY'
+          import glob
+          import xml.etree.ElementTree as ET
+          for path in glob.glob('wp-content/themes/vahidtuning/assets/img/*.svg'):
+              ET.parse(path)
+              print('SVG OK:', path)
+          PY

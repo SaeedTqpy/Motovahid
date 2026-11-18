@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" role="img" aria-label="Motorcycle protective gear illustration">
+<defs>
+<linearGradient id="shell" x1="122" y1="95" x2="520" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#49544C"/><stop offset=".34" stop-color="#26352E"/><stop offset=".8" stop-color="#131D18"/><stop offset="1" stop-color="#080D0A"/></linearGradient>
+<linearGradient id="hi" x1="180" y1="65" x2="450" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#F3FFB7"/><stop offset=".45" stop-color="#CBFB4A"/><stop offset="1" stop-color="#7EAC1C"/></linearGradient>
+<linearGradient id="visor" x1="190" y1="180" x2="435" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#DDEDF4"/><stop offset=".32" stop-color="#6D9A9C"/><stop offset=".7" stop-color="#233C42"/><stop offset="1" stop-color="#0D2228"/></linearGradient>
+<filter id="drop"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<ellipse cx="340" cy="460" rx="203" ry="27" fill="#17261D" opacity=".19" filter="url(#drop)"/>
+<g transform="rotate(-10 325 288)">
+<path d="M154 383L159 302L153 231C152 211 167 201 180 205C191 207 197 218 199 230L216 288L209 181C209 159 224 148 240 152C253 155 257 164 260 179L277 276L280 157C280 139 294 129 309 133C323 136 328 149 326 164L331 268L355 186C363 162 383 156 399 168C410 178 407 192 403 205L380 313C407 276 431 260 453 277C466 287 461 302 449 321L387 409L356 456L221 458Z" fill="url(#shell)" stroke="#101712" stroke-width="14" stroke-linejoin="round"/>
+<path d="M181 344L188 391L235 415L340 413L380 371" stroke="#B8ED44" stroke-width="18" stroke-linecap="round"/>
+<path d="M197 301L249 286L288 318L256 367L196 360Z" fill="#314237" stroke="#C1F446" stroke-width="8"/>
+<path d="M263 289L313 275L353 311L326 356L279 353Z" fill="#35463A" stroke="#829D59" stroke-width="7"/>
+<path d="M207 192L250 189M285 180L324 186M361 217L395 233" stroke="#C0F249" stroke-width="13" stroke-linecap="round"/>
+<path d="M212 431L352 434" stroke="#9AB437" stroke-width="22"/>
+</g>
+</svg>

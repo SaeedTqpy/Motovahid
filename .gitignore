@@ -1,4 +1,4 @@
-# WordPress runtime and environment
+# Local WordPress runtime
 .env
 .env.*
 !.env.example

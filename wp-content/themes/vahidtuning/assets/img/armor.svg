@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" role="img" aria-label="Motorcycle protective gear illustration">
+<defs>
+<linearGradient id="shell" x1="122" y1="95" x2="520" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#49544C"/><stop offset=".34" stop-color="#26352E"/><stop offset=".8" stop-color="#131D18"/><stop offset="1" stop-color="#080D0A"/></linearGradient>
+<linearGradient id="hi" x1="180" y1="65" x2="450" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#F3FFB7"/><stop offset=".45" stop-color="#CBFB4A"/><stop offset="1" stop-color="#7EAC1C"/></linearGradient>
+<linearGradient id="visor" x1="190" y1="180" x2="435" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#DDEDF4"/><stop offset=".32" stop-color="#6D9A9C"/><stop offset=".7" stop-color="#233C42"/><stop offset="1" stop-color="#0D2228"/></linearGradient>
+<filter id="drop"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<ellipse cx="340" cy="460" rx="203" ry="27" fill="#17261D" opacity=".19" filter="url(#drop)"/>
+<g transform="rotate(-4 320 260)">
+<path d="M247 91L392 92L449 130L496 210L450 265L430 425L328 463L219 427L198 260L151 216L200 135Z" fill="url(#shell)" stroke="#101712" stroke-width="16" stroke-linejoin="round"/>
+<path d="M254 104L318 151L382 103L426 137L405 219L329 251L238 216L214 135Z" fill="#A5D639" stroke="#0C190D" stroke-width="12"/>
+<path d="M254 146L313 182L318 226L251 201Z" fill="#18251B"/><path d="M372 147L335 183L339 224L388 197Z" fill="#18251B"/>
+<path d="M228 243L310 271L311 342L239 351Z" fill="#35473B" stroke="#111A14" stroke-width="11"/>
+<path d="M333 271L418 241L409 352L333 343Z" fill="#35473B" stroke="#111A14" stroke-width="11"/>
+<path d="M246 371L309 362L312 424L260 407Z" fill="#8EBB36" stroke="#1A2619" stroke-width="10"/>
+<path d="M332 365L405 370L387 409L332 423Z" fill="#8EBB36" stroke="#1A2619" stroke-width="10"/>
+<path d="M153 216L210 178M444 182L495 210" stroke="#C9FA4B" stroke-width="21" stroke-linecap="round"/>
+</g>
+</svg>
