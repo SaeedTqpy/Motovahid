@@ -100,12 +100,6 @@ function vt_product_art( $product ) {
     return get_template_directory_uri() . '/assets/img/' . $slug . '.svg';
 }
 
-function vt_currency_notice() {
-    if ( ! vt_has_woocommerce() ) { return; }
-    if ( is_admin() && current_user_can( 'activate_plugins' ) ) {
-        // Displayed only when WooCommerce is unavailable, so no notices here.
-    }
-}
 function vt_woo_wrapper_start() { echo '<main id="main-content" class="vt-wc-main"><div class="vt-container">'; }
 function vt_woo_wrapper_end() { echo '</div></main>'; }
 add_action( 'after_setup_theme', function() {
@@ -132,3 +126,5 @@ add_filter( 'woocommerce_add_to_cart_fragments', function( $fragments ) {
     $fragments['span.vt-cart-count'] = '<span class="vt-cart-count">' . esc_html( (string) vt_cart_count() ) . '</span>';
     return $fragments;
 } );
+
+require_once get_template_directory() . '/inc/woocommerce.php';
