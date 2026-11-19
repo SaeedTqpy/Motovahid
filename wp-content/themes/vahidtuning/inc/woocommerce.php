@@ -86,6 +86,16 @@ function vt_pdp_close_hero() {
     <?php
 }
 
+function vt_pdp_utility_links() {
+    ?>
+    <nav class="vt-pdp-utility" aria-label="دسترسی‌های خرید">
+        <a href="<?php echo esc_url( vt_cart_url() ); ?>"><?php vt_icon( 'bag' ); ?><span>مشاهده سبد خرید</span></a>
+        <a href="<?php echo esc_url( vt_account_url() ); ?>"><?php vt_icon( 'user' ); ?><span>حساب و پیگیری سفارش</span></a>
+        <a href="<?php echo esc_url( vt_shop_url() ); ?>"><?php vt_icon( 'grid' ); ?><span>سایر محصولات</span></a>
+    </nav>
+    <?php
+}
+
 add_action( 'wp', function() {
     if ( ! function_exists( 'is_product' ) || ! is_product() ) { return; }
     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
@@ -97,6 +107,7 @@ add_action( 'wp', function() {
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_open_purchase', 24 );
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_price', 25 );
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_close_purchase', 31 );
+    add_action( 'woocommerce_single_product_summary', 'vt_pdp_utility_links', 35 );
     add_action( 'woocommerce_after_single_product_summary', 'vt_pdp_close_hero', 0 );
     $product = wc_get_product( get_queried_object_id() );
     if ( $product && ! $product->get_image_id() ) {
