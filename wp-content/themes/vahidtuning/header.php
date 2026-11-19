@@ -37,7 +37,15 @@ defined( 'ABSPATH' ) || exit;
     </div>
     <nav class="vt-store-nav" id="vt-store-nav" aria-label="منوی فروشگاه">
         <div class="vt-container vt-nav-inner">
-            <a class="vt-nav-shop" href="<?php echo esc_url( vt_shop_url() ); ?>"<?php if ( function_exists( 'is_shop' ) && is_shop() ) : ?> aria-current="page"<?php endif; ?>><?php vt_icon( 'grid' ); ?> همه محصولات</a>
+            <details class="vt-nav-catalog">
+                <summary><?php vt_icon( 'grid' ); ?> دسته‌بندی محصولات <span class="vt-nav-catalog-chevron"><?php vt_icon( 'chevron' ); ?></span></summary>
+                <div class="vt-nav-catalog-menu">
+                    <a href="<?php echo esc_url( vt_shop_url() ); ?>" class="vt-nav-all-products">همه محصولات <?php vt_icon( 'arrow' ); ?></a>
+                    <?php foreach ( vt_catalog_categories() as $slug => $category ) : ?>
+                        <a href="<?php echo esc_url( vt_category_url( $slug ) ); ?>"><?php echo esc_html( $category['name'] ); ?><?php vt_icon( 'chevron' ); ?></a>
+                    <?php endforeach; ?>
+                </div>
+            </details>
             <?php if ( has_nav_menu( 'primary' ) ) : ?>
                 <?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'vt-menu', 'depth' => 2 ) ); ?>
             <?php else : ?>
