@@ -45,7 +45,46 @@ $category_links = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' =>
         </nav>
     <?php endif; ?>
 </header>
-<div class="vt-shop-main">
+<div class="vt-shop-layout vt-woodmart-shop-layout">
+    <aside class="vt-shop-sidebar vt-woodmart-sidebar" aria-label="فیلترها و دسته‌بندی محصولات">
+        <details class="vt-filter-panel" data-vt-filter-panel open>
+            <summary><?php vt_icon( 'filter' ); ?> دسته‌بندی و فیلترها <?php vt_icon( 'chevron' ); ?></summary>
+            <div class="vt-filter-panel-content">
+                <section class="vt-sidebar-section" aria-labelledby="vt-sidebar-categories">
+                    <h2 id="vt-sidebar-categories">دسته‌بندی محصولات</h2>
+                    <ul class="vt-side-list">
+                        <li><a href="<?php echo esc_url( vt_shop_url() ); ?>"<?php if ( is_shop() && ! is_search() ) : ?> aria-current="page"<?php endif; ?>>همه محصولات <?php vt_icon( 'chevron' ); ?></a></li>
+                        <?php if ( ! is_wp_error( $category_links ) ) : foreach ( $category_links as $category ) :
+                            $category_link = get_term_link( $category );
+                            if ( is_wp_error( $category_link ) ) { continue; }
+                        ?>
+                            <li><a href="<?php echo esc_url( $category_link ); ?>"<?php if ( is_tax( 'product_cat', $category->term_id ) ) : ?> aria-current="page"<?php endif; ?>>
+                                <span><?php echo esc_html( $category->name ); ?></span>
+                                <small><?php echo esc_html( vt_format_number( $category->count ) ); ?></small>
+                            </a></li>
+                        <?php endforeach; endif; ?>
+                    </ul>
+                </section>
+                <section class="vt-sidebar-section" aria-labelledby="vt-sidebar-price">
+                    <h2 id="vt-sidebar-price">فیلتر بر اساس قیمت</h2>
+                    <form class="vt-sidebar-price-form" method="get" action="<?php echo esc_url( strtok( $catalog_url, '?' ) ); ?>">
+                        <div class="vt-price-fields">
+                            <label>از (<?php echo esc_html( $currency ); ?>)<input type="number" min="0" inputmode="decimal" step="any" name="min_price" value="<?php echo esc_attr( $min_price ); ?>" placeholder="حداقل قیمت"></label>
+                            <label>تا (<?php echo esc_html( $currency ); ?>)<input type="number" min="0" inputmode="decimal" step="any" name="max_price" value="<?php echo esc_attr( $max_price ); ?>" placeholder="حداکثر قیمت"></label>
+                        </div>
+                        <?php foreach ( $filter_params as $key => $value ) : ?>
+                            <?php if ( is_scalar( $value ) ) : ?><input type="hidden" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $value ); ?>"><?php endif; ?>
+                        <?php endforeach; ?>
+                        <button class="vt-btn vt-btn-primary" type="submit">اعمال فیلتر قیمت</button>
+                        <?php if ( $has_price_filter ) : ?>
+                            <a class="vt-sidebar-reset" href="<?php echo esc_url( add_query_arg( $filter_params, $catalog_url ) ); ?>">حذف فیلتر قیمت</a>
+                        <?php endif; ?>
+                    </form>
+                </section>
+            </div>
+        </details>
+    </aside>
+    <div class="vt-shop-main">
     <?php $has_products = woocommerce_product_loop(); ?>
     <div class="vt-shop-toolbar">
         <p class="vt-catalog-count"><?php echo esc_html( vt_format_number( (int) wc_get_loop_prop( 'total' ) ) ); ?> محصول</p>
@@ -57,23 +96,6 @@ $category_links = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' =>
                 add_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
             }
             ?>
-            <details class="vt-price-disclosure">
-                <summary><?php vt_icon( 'filter' ); ?> فیلتر قیمت<?php if ( $has_price_filter ) : ?><span class="vt-filter-active-dot" aria-label="فعال"></span><?php endif; ?></summary>
-                <form method="get" action="<?php echo esc_url( strtok( $catalog_url, '?' ) ); ?>">
-                    <h2>محدوده قیمت (<?php echo esc_html( $currency ); ?>)</h2>
-                    <div class="vt-price-fields">
-                        <label>از<input type="number" inputmode="decimal" min="0" step="any" name="min_price" value="<?php echo esc_attr( $min_price ); ?>" placeholder="حداقل"></label>
-                        <label>تا<input type="number" inputmode="decimal" min="0" step="any" name="max_price" value="<?php echo esc_attr( $max_price ); ?>" placeholder="حداکثر"></label>
-                    </div>
-                    <?php foreach ( $filter_params as $key => $value ) : ?>
-                        <?php if ( is_scalar( $value ) ) : ?><input type="hidden" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $value ); ?>"><?php endif; ?>
-                    <?php endforeach; ?>
-                    <button class="vt-btn vt-btn-primary" type="submit">اعمال فیلتر</button>
-                    <?php if ( $has_price_filter ) : ?>
-                        <a class="vt-text-link" href="<?php echo esc_url( add_query_arg( array_map( 'rawurlencode', $filter_params ), $catalog_url ) ); ?>">پاک کردن فیلتر قیمت</a>
-                    <?php endif; ?>
-                </form>
-            </details>
         </div>
     </div>
 
@@ -102,6 +124,7 @@ $category_links = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' =>
         add_action( 'woocommerce_no_products_found', 'wc_no_products_found', 10 );
         ?>
     <?php endif; ?>
+</div>
 </div>
 <?php
 do_action( 'woocommerce_after_main_content' );
