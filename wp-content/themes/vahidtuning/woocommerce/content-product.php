@@ -30,6 +30,12 @@ if ( ! $product->is_in_stock() ) {
     <div class="vt-product-body">
         <span class="vt-product-category"><?php echo wp_kses_post( $terms ? $terms : 'تجهیزات موتور تریل' ); ?></span>
         <h2 class="vt-product-name"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+        <?php if ( wc_review_ratings_enabled() && $product->get_rating_count() ) : ?>
+            <div class="vt-product-rating">
+                <?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating(), $product->get_rating_count() ) ); ?>
+                <small>(<?php echo esc_html( vt_format_number( $product->get_rating_count() ) ); ?>)</small>
+            </div>
+        <?php endif; ?>
         <div class="vt-product-bottom">
             <span class="vt-product-price"><?php echo wp_kses_post( vt_persian_price_html( $product->get_price_html() ) ); ?></span>
             <span class="vt-product-add"><?php woocommerce_template_loop_add_to_cart(); ?></span>
