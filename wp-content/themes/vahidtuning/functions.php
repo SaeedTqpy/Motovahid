@@ -6,7 +6,9 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'VT_VERSION', '1.0.1' );
+define( 'VT_HERO_TITLE', 'برای مسیرهای خارج از جاده.' );
+define( 'VT_HERO_DESCRIPTION', 'از کلاه و تجهیزات ایمنی تا قطعات فنی موتور؛ برای تریل، اندرو و مسیرهای خاکی آماده شو.' );
+define( 'VT_ANNOUNCEMENT', 'فروشگاه تخصصی تجهیزات موتور تریل و اندرو' );
 
 function vt_setup() {
     load_theme_textdomain( 'vahidtuning', get_template_directory() . '/languages' );
@@ -24,23 +26,38 @@ function vt_setup() {
 add_action( 'after_setup_theme', 'vt_setup' );
 
 function vt_enqueue_assets() {
-    wp_enqueue_style( 'vt-fonts', 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap', array(), null );
-    wp_enqueue_style( 'vt-style', get_stylesheet_uri(), array( 'vt-fonts' ), VT_VERSION );
-    wp_enqueue_style( 'vt-layout-polish', get_template_directory_uri() . '/assets/css/polish.css', array( 'vt-style' ), VT_VERSION );
-    wp_enqueue_script( 'vt-storefront', get_template_directory_uri() . '/assets/js/storefront.js', array(), VT_VERSION, true );
+    $dependencies = array_values( array_filter( array( 'woocommerce-general', 'woocommerce-layout', 'woocommerce-smallscreen' ), function( $handle ) {
+        return wp_style_is( $handle, 'enqueued' );
+    } ) );
+    wp_enqueue_style( 'vt-style', get_stylesheet_uri(), $dependencies, (string) filemtime( get_stylesheet_directory() . '/style.css' ) );
+    $experience = 'assets/css/store-experience.css';
+    wp_enqueue_style( 'vt-store-experience', get_theme_file_uri( $experience ), array( 'vt-style' ), (string) filemtime( get_theme_file_path( $experience ) ) );
+    if ( is_front_page() ) {
+        $home_styles = 'assets/css/home.css';
+        wp_enqueue_style( 'vt-home', get_theme_file_uri( $home_styles ), array( 'vt-store-experience' ), (string) filemtime( get_theme_file_path( $home_styles ) ) );
+    }
+    if ( function_exists( 'is_product' ) && is_product() ) {
+        $product_styles = 'assets/css/single-product.css';
+        wp_enqueue_style( 'vt-single-product', get_theme_file_uri( $product_styles ), array( 'vt-store-experience' ), (string) filemtime( get_theme_file_path( $product_styles ) ) );
+    }
+    if ( vt_purchase_screen() ) {
+        $purchase_styles = 'assets/css/purchase.css';
+        wp_enqueue_style( 'vt-purchase', get_theme_file_uri( $purchase_styles ), array( 'vt-store-experience' ), (string) filemtime( get_theme_file_path( $purchase_styles ) ) );
+    }
+    wp_enqueue_script( 'vt-storefront', get_theme_file_uri( 'assets/js/storefront.js' ), array(), (string) filemtime( get_theme_file_path( 'assets/js/storefront.js' ) ), true );
 }
 add_action( 'wp_enqueue_scripts', 'vt_enqueue_assets' );
 
 function vt_customize( $customizer ) {
     $customizer->add_section( 'vt_store', array( 'title' => 'تنظیمات فروشگاه وحید تیونینگ', 'priority' => 32 ) );
     $settings = array(
-        'vt_hero_title' => array( 'تیتر صفحه نخست', 'برای مسیرهایی که پایان ندارند', 'text' ),
-        'vt_hero_description' => array( 'توضیح صفحه نخست', 'تجهیزات تخصصی موتور تریل، اندرو و آفرود؛ انتخاب‌های جسورانه برای ماجراجویی امن‌تر.', 'textarea' ),
+        'vt_hero_title' => array( 'تیتر صفحه نخست', VT_HERO_TITLE, 'text' ),
+        'vt_hero_description' => array( 'توضیح صفحه نخست', VT_HERO_DESCRIPTION, 'textarea' ),
         'vt_phone' => array( 'شماره تماس', '', 'text' ),
         'vt_instagram' => array( 'لینک اینستاگرام', '', 'url' ),
         'vt_whatsapp' => array( 'شماره واتساپ با کد کشور (بدون +)', '', 'text' ),
         'vt_address' => array( 'نشانی فروشگاه', '', 'textarea' ),
-        'vt_announcement' => array( 'متن نوار اطلاع‌رسانی', 'آماده برای مسیرهای سخت؛ خرید آسان تجهیزات آفرود', 'text' ),
+        'vt_announcement' => array( 'متن نوار اطلاع‌رسانی', VT_ANNOUNCEMENT, 'text' ),
     );
     foreach ( $settings as $id => $meta ) {
         $sanitize = 'sanitize_text_field';
@@ -53,8 +70,65 @@ function vt_customize( $customizer ) {
 add_action( 'customize_register', 'vt_customize' );
 
 function vt_has_woocommerce() { return class_exists( 'WooCommerce' ); }
+
+function vt_image_url( $filename ) { return get_theme_file_uri( 'assets/img/' . $filename ); }
+
+function vt_format_number( $number ) {
+    return strtr( (string) $number, array( '0' => '۰', '1' => '۱', '2' => '۲', '3' => '۳', '4' => '۴', '5' => '۵', '6' => '۶', '7' => '۷', '8' => '۸', '9' => '۹' ) );
+}
+
+function vt_persian_price_html( $html ) {
+    $parts = wp_html_split( $html );
+    foreach ( $parts as $index => $part ) {
+        if ( 0 === $index % 2 && '' !== $part ) {
+            $parts[ $index ] = esc_html( vt_format_number( html_entity_decode( $part, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
+        }
+    }
+    return implode( '', $parts );
+}
+
+function vt_brand() {
+    ?>
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-brand" aria-label="وحید تیونینگ، صفحه اصلی">
+        <span class="vt-brand-symbol" aria-hidden="true">V</span>
+        <span class="vt-brand-copy"><strong>وحید تیونینگ</strong><small lang="en" dir="ltr">VAHID TUNING</small></span>
+    </a>
+    <?php
+}
+
+function vt_catalog_categories() {
+    return array(
+        'helmets' => array( 'name' => 'کلاه کاسکت', 'image' => 'category-helmet.jpg' ),
+        'goggles' => array( 'name' => 'عینک و شیلد', 'image' => 'category-goggles.jpg' ),
+        'gloves'  => array( 'name' => 'دستکش موتور', 'image' => 'category-gloves.jpg' ),
+        'boots'   => array( 'name' => 'بوت و پوشاک', 'image' => 'category-boots.jpg' ),
+        'armor'   => array( 'name' => 'تجهیزات ایمنی', 'image' => 'category-armor.jpg' ),
+        'parts'   => array( 'name' => 'قطعات و لوازم', 'image' => 'category-parts.jpg' ),
+    );
+}
+
+function vt_home_products() {
+    if ( ! vt_has_woocommerce() ) { return array(); }
+
+    $products = wc_get_products( array( 'status' => 'publish', 'limit' => 24, 'orderby' => 'date', 'order' => 'DESC' ) );
+    $featured = array();
+    $recent = array();
+    foreach ( $products as $product ) {
+        if ( ! $product->is_visible() ) { continue; }
+        if ( $product->is_featured() ) {
+            $featured[] = $product->get_id();
+        } else {
+            $recent[] = $product->get_id();
+        }
+    }
+    return array_slice( array_merge( $featured, $recent ), 0, 8 );
+}
+
 function vt_shop_url() {
     if ( vt_has_woocommerce() ) {
+        if ( ! get_option( 'permalink_structure' ) ) {
+            return add_query_arg( 'post_type', 'product', home_url( '/' ) );
+        }
         $shop_id = wc_get_page_id( 'shop' );
         if ( $shop_id > 0 ) { return get_permalink( $shop_id ); }
         $archive = get_post_type_archive_link( 'product' );
@@ -68,6 +142,10 @@ function vt_category_url( $slug ) {
         $url = get_term_link( $term );
         if ( ! is_wp_error( $url ) ) { return $url; }
     }
+    $categories = vt_catalog_categories();
+    if ( vt_has_woocommerce() && isset( $categories[ $slug ] ) ) {
+        return add_query_arg( array( 's' => rawurlencode( $categories[ $slug ]['name'] ), 'post_type' => 'product' ), home_url( '/' ) );
+    }
     return vt_shop_url();
 }
 function vt_cart_url() { return vt_has_woocommerce() ? wc_get_cart_url() : home_url( '/' ); }
@@ -77,9 +155,12 @@ function vt_account_url() { return vt_has_woocommerce() ? wc_get_page_permalink(
 function vt_icon( $name, $class = '' ) {
     $paths = array(
         'bag' => '<path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/>',
+        'home' => '<path d="m3 11 9-8 9 8M5 10v10h14V10m-9 10v-6h4v6"/>',
         'user' => '<circle cx="12" cy="8" r="3.3"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/>',
         'search' => '<circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2"/>',
         'arrow' => '<path d="M19 12H5m0 0 6-6m-6 6 6 6"/>',
+        'down' => '<path d="M12 5v14m-5-5 5 5 5-5"/>',
+        'grid' => '<rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/>',
         'chevron' => '<path d="m15 18-6-6 6-6"/>',
         'menu' => '<path d="M4 7h16M4 12h16M4 17h16"/>',
         'close' => '<path d="m5 5 14 14M19 5 5 19"/>',
@@ -130,7 +211,7 @@ add_action( 'admin_notices', 'vt_wc_missing_notice' );
 
 // Cart fragments keep the header count accurate with classic AJAX add-to-cart.
 add_filter( 'woocommerce_add_to_cart_fragments', function( $fragments ) {
-    $fragments['span.vt-cart-count'] = '<span class="vt-cart-count">' . esc_html( (string) vt_cart_count() ) . '</span>';
+    $fragments['span.vt-cart-count'] = '<span class="vt-cart-count">' . esc_html( vt_format_number( vt_cart_count() ) ) . '</span>';
     return $fragments;
 } );
 

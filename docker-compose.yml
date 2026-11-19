@@ -16,7 +16,7 @@ services:
       timeout: 5s
       retries: 15
   wordpress:
-    image: wordpress:php8.3-apache
+    build: .
     restart: unless-stopped
     depends_on:
       db:

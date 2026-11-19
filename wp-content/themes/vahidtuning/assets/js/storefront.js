@@ -1,75 +1,93 @@
-/* Accessible, dependency-free storefront interactions. */
+/* Keep native navigation and filters available when JavaScript is off. */
 (function () {
   'use strict';
-  var menuButton = document.querySelector('[data-vt-menu-toggle]');
-  var mobileMenu = document.getElementById('vt-mobile-navigation');
-  var searchButton = document.querySelector('[data-vt-search-toggle]');
-  var searchPanel = document.getElementById('vt-search-panel');
-  var filterButton = document.querySelector('[data-vt-filter-toggle]');
-  var filterPanel = document.getElementById('vt-filter-panel');
 
-  function setExpanded(button, panel, isOpen) {
+  var mobileNav = window.matchMedia('(max-width: 760px)');
+
+  function disclosure(selector, panelId, breakpoint) {
+    var button = document.querySelector(selector);
+    var panel = document.getElementById(panelId);
     if (!button || !panel) return;
-    panel.hidden = !isOpen;
-    button.setAttribute('aria-expanded', String(isOpen));
-  }
-  if (mobileMenu) mobileMenu.hidden = true;
-  if (searchPanel) searchPanel.hidden = true;
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener('click', function () {
-      var next = menuButton.getAttribute('aria-expanded') !== 'true';
-      setExpanded(menuButton, mobileMenu, next);
-      if (next) setExpanded(searchButton, searchPanel, false);
+
+    function setOpen(open) {
+      panel.hidden = !open;
+      button.setAttribute('aria-expanded', String(open));
+    }
+
+    function syncLayout() {
+      button.hidden = !breakpoint.matches;
+      setOpen(!breakpoint.matches);
+    }
+
+    button.addEventListener('click', function () {
+      setOpen(panel.hidden);
     });
-  }
-  if (searchButton && searchPanel) {
-    searchButton.addEventListener('click', function () {
-      var next = searchButton.getAttribute('aria-expanded') !== 'true';
-      setExpanded(searchButton, searchPanel, next);
-      if (next) {
-        setExpanded(menuButton, mobileMenu, false);
-        var input = searchPanel.querySelector('input[type="search"]');
-        if (input) input.focus();
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && breakpoint.matches && !panel.hidden &&
+          (panel.contains(document.activeElement) || document.activeElement === button)) {
+        setOpen(false);
+        button.focus();
       }
     });
+
+    breakpoint.addEventListener('change', syncLayout);
+    syncLayout();
   }
-  if (filterButton && filterPanel) {
-    filterButton.addEventListener('click', function () {
-      var next = filterButton.getAttribute('aria-expanded') !== 'true';
-      filterPanel.classList.toggle('is-open', next);
-      filterPanel.hidden = !next && window.innerWidth <= 820;
-      filterButton.setAttribute('aria-expanded', String(next));
+
+  disclosure('[data-vt-menu-toggle]', 'vt-store-nav', mobileNav);
+
+  var purchase = document.getElementById('vt-pdp-purchase');
+  if (!purchase) return;
+
+  var sticky = document.querySelector('[data-vt-mobile-buy]');
+  var purchaseButton = purchase.querySelector('.single_add_to_cart_button');
+  if (sticky && purchaseButton && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      sticky.hidden = entries[0].intersectionRatio >= 0.8;
+    }, { threshold: 0.8 });
+    observer.observe(purchaseButton);
+  }
+
+  var inputs = purchase.querySelectorAll('form.cart:not(.grouped_form) .quantity input.qty[type="number"]');
+  inputs.forEach(function (input) {
+    if (input.step === 'any' || input.disabled || input.readOnly) return;
+
+    function makeStepButton(label, symbol) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'vt-quantity-step';
+      button.setAttribute('aria-label', label);
+      button.textContent = symbol;
+      return button;
+    }
+
+    var minus = makeStepButton('کاهش تعداد', '−');
+    var plus = makeStepButton('افزایش تعداد', '+');
+    input.before(minus);
+    input.after(plus);
+    input.parentElement.classList.add('vt-quantity-enhanced');
+
+    function updateSteps() {
+      var unavailable = input.disabled || input.readOnly || input.step === 'any';
+      minus.disabled = unavailable || (input.min !== '' && input.valueAsNumber <= Number(input.min));
+      plus.disabled = unavailable || (input.max !== '' && input.valueAsNumber >= Number(input.max));
+    }
+
+    function step(method) {
+      input[method]();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    minus.addEventListener('click', function () { step('stepDown'); });
+    plus.addEventListener('click', function () { step('stepUp'); });
+    input.addEventListener('input', updateSteps);
+    input.addEventListener('change', updateSteps);
+    new MutationObserver(updateSteps).observe(input, {
+      attributes: true,
+      attributeFilter: ['min', 'max', 'step', 'disabled', 'readonly', 'value']
     });
-  }
-  // Dropdowns overlay the page; close them when users click outside the header.
-  document.addEventListener('click', function (event) {
-    var header = document.getElementById('vt-header');
-    if (!header || header.contains(event.target)) return;
-    setExpanded(menuButton, mobileMenu, false);
-    setExpanded(searchButton, searchPanel, false);
+    updateSteps();
   });
-  // Escape returns focus to whichever toggle is currently open.
-  document.addEventListener('keydown', function (event) {
-    if (event.key !== 'Escape') return;
-    var wasMenuOpen = menuButton && menuButton.getAttribute('aria-expanded') === 'true';
-    var wasSearchOpen = searchButton && searchButton.getAttribute('aria-expanded') === 'true';
-    setExpanded(menuButton, mobileMenu, false);
-    setExpanded(searchButton, searchPanel, false);
-    if (wasSearchOpen) searchButton.focus();
-    else if (wasMenuOpen) menuButton.focus();
-    if (filterButton && filterPanel) {
-      filterPanel.classList.remove('is-open');
-      filterButton.setAttribute('aria-expanded', 'false');
-      if (window.innerWidth <= 820) filterPanel.hidden = true;
-    }
-  });
-  window.addEventListener('resize', function () {
-    if (window.innerWidth > 1100) {
-      setExpanded(menuButton, mobileMenu, false);
-      if (filterPanel) filterPanel.hidden = false;
-    } else if (filterPanel && !filterPanel.classList.contains('is-open')) {
-      filterPanel.hidden = true;
-    }
-  });
-  if (filterPanel && window.innerWidth <= 820) filterPanel.hidden = true;
 }());
