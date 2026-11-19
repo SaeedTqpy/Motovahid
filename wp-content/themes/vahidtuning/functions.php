@@ -50,6 +50,8 @@ function vt_enqueue_assets() {
         return wp_style_is( $handle, 'enqueued' );
     } ) );
     wp_enqueue_style( 'vt-woodmart-inspired', get_theme_file_uri( $inspired_styles ), $inspired_dependencies, (string) filemtime( get_theme_file_path( $inspired_styles ) ) );
+    $commerce_styles = 'assets/css/woodmart-pages.css';
+    wp_enqueue_style( 'vt-woodmart-pages', get_theme_file_uri( $commerce_styles ), array( 'vt-woodmart-inspired' ), (string) filemtime( get_theme_file_path( $commerce_styles ) ) );
     wp_enqueue_script( 'vt-storefront', get_theme_file_uri( 'assets/js/storefront.js' ), array(), (string) filemtime( get_theme_file_path( 'assets/js/storefront.js' ) ), true );
 }
 add_action( 'wp_enqueue_scripts', 'vt_enqueue_assets' );
