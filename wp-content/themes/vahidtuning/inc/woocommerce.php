@@ -72,6 +72,16 @@ function vt_pdp_close_purchase() {
     echo '</div>';
 }
 
+function vt_pdp_trust() {
+    ?>
+    <ul class="vt-pdp-trust" aria-label="خدمات فروشگاه">
+        <li><?php vt_icon( 'truck' ); ?><span><strong>ارسال سفارش</strong><small>جزئیات در مرحله تسویه‌حساب</small></span></li>
+        <li><?php vt_icon( 'support' ); ?><span><strong>پیگیری سفارش</strong><small>از بخش حساب کاربری</small></span></li>
+        <li><?php vt_icon( 'shield' ); ?><span><strong>خرید امن</strong><small>پرداخت از طریق درگاه فروشگاه</small></span></li>
+    </ul>
+    <?php
+}
+
 function vt_pdp_close_hero() {
     global $product;
     echo '</div>';
@@ -97,6 +107,7 @@ add_action( 'wp', function() {
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_open_purchase', 24 );
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_price', 25 );
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_close_purchase', 31 );
+    add_action( 'woocommerce_single_product_summary', 'vt_pdp_trust', 32 );
     add_action( 'woocommerce_after_single_product_summary', 'vt_pdp_close_hero', 0 );
     $product = wc_get_product( get_queried_object_id() );
     if ( $product && ! $product->get_image_id() ) {

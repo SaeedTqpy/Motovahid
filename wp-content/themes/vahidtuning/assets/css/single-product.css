@@ -1,5 +1,7 @@
-/* Product detail layout. The gallery, variations and reviews use WooCommerce. */
-.single-product .vt-wc-main { padding-top: 23px; }
+/* Product detail layout. The gallery, variations and reviews use WooCommerce.
+   Persian headings keep normal letter-spacing so letter joins stay intact. */
+.single-product .vt-wc-main { padding-top: 23px; background: linear-gradient(180deg, #f6f2ea 0, #faf9f6 420px); }
+.single-product .vt-wc-main .vt-container { padding-bottom: 40px; }
 .single-product .vt-wc-main .woocommerce-breadcrumb {
   margin-bottom: 17px;
   font-size: 12px;
@@ -14,11 +16,14 @@
 }
 .vt-pdp-media {
   min-width: 0;
-  border: 1px solid var(--line);
-  border-radius: 20px;
+  border: 1px solid #e6ddd0;
+  border-radius: 24px;
   background: #f2eee8;
   overflow: hidden;
+  box-shadow: 0 30px 50px -40px rgba(40, 22, 8, .45);
 }
+.vt-pdp-hero > .vt-pdp-media { position: sticky; top: 20px; }
+@media (max-width: 800px) { .vt-pdp-hero > .vt-pdp-media { position: static; } }
 .woocommerce div.product .vt-pdp-media > .images {
   float: none;
   width: 100%;
@@ -67,11 +72,19 @@
   width: auto;
   min-width: 0;
   margin: 0;
-  padding: clamp(17px, 2.8vw, 37px);
-  border: 1px solid var(--line);
-  border-radius: 20px;
+  padding: clamp(20px, 3vw, 40px);
+  border: 1px solid #e6ddd0;
+  border-radius: 24px;
   background: #fff;
+  box-shadow: 0 30px 50px -40px rgba(40, 22, 8, .35);
 }
+.vt-pdp-trust { display: grid; gap: 0; margin: 18px 0 0; padding: 0; list-style: none; border-top: 1px solid #e5ddcf; }
+.vt-pdp-trust li { display: flex; align-items: center; gap: 12px; padding: 12px 2px; border-bottom: 1px solid #efe9df; }
+.vt-pdp-trust li:last-child { border-bottom: 0; }
+.vt-pdp-trust .vt-icon { width: 20px; height: 20px; color: var(--accent-text); }
+.vt-pdp-trust span { display: grid; gap: 1px; }
+.vt-pdp-trust strong { font-size: 13px; font-weight: 800; }
+.vt-pdp-trust small { color: var(--muted); font-size: 11px; }
 .vt-pdp-category {
   display: inline-flex;
   align-items: center;
@@ -86,8 +99,8 @@
 .woocommerce div.product .vt-pdp-hero .product_title {
   font-size: clamp(24px, 3.3vw, 44px);
   font-weight: 900;
-  line-height: 1.39;
-  letter-spacing: -.037em;
+  line-height: 1.5;
+  letter-spacing: 0;
   overflow-wrap: anywhere;
 }
 .woocommerce div.product .vt-pdp-hero .woocommerce-product-rating { margin: 10px 0 0; }
@@ -210,12 +223,17 @@
 .vt-pdp-hero .product_meta a { color: var(--accent-text); }
 
 .single-product .woocommerce-tabs { margin-top: clamp(25px, 4vw, 52px); }
+.woocommerce div.product .woocommerce-tabs { border-radius: 24px; }
 .woocommerce div.product .woocommerce-tabs ul.tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 0 0 9px;
-  padding: 0;
+  margin: 0 0 12px;
+  padding: 6px;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 14px;
+  background: #efe8dc;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs::before,
 .woocommerce div.product .woocommerce-tabs ul.tabs li::before,
@@ -223,11 +241,13 @@
 .woocommerce div.product .woocommerce-tabs ul.tabs li {
   margin: 0;
   padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 9px;
+  border: 0;
+  border-radius: 10px;
   color: var(--muted);
-  background: #fff;
+  background: transparent;
+  transition: background .2s, color .2s;
 }
+.woocommerce div.product .woocommerce-tabs ul.tabs li:not(.active):hover { color: var(--ink); background: #f8f3ec; }
 .woocommerce div.product .woocommerce-tabs ul.tabs li a {
   display: block;
   padding: 9px 14px;
@@ -238,12 +258,15 @@
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active {
   background: var(--ink);
   color: #fff;
-  border-color: var(--ink);
+  box-shadow: 0 8px 18px -10px rgba(20, 12, 6, .6);
 }
-.woocommerce div.product .woocommerce-tabs .panel { min-height: 94px; padding: clamp(16px, 2.7vw, 29px); }
+.woocommerce div.product .woocommerce-tabs .panel { min-height: 94px; padding: clamp(20px, 3vw, 34px); border: 1px solid #e6ddd0; border-radius: 22px; background: #fff; }
 .woocommerce div.product .woocommerce-tabs .panel p + p { margin-top: .75em; }
 .single-product .related { margin-top: 31px; }
-.single-product .related > h2 { font-size: clamp(22px, 3vw, 33px); font-weight: 900; }
+.single-product .related > h2 { font-size: clamp(24px, 3.2vw, 36px); font-weight: 900; line-height: 1.5; }
+.single-product .related ul.products.vt-product-grid { gap: clamp(16px, 2vw, 24px); }
+.single-product .related ul.products li.vt-product-card:hover { transform: translateY(-4px); }
+.single-product .related ul.products li.vt-product-card { transition: transform .25s, box-shadow .25s, border-color .25s; }
 .vt-pdp-mobile-buy { display: none; }
 
 @media (max-width: 800px) {
