@@ -47,6 +47,37 @@ jobs:
         run: |
           curl -fsSL --retry 8 --retry-delay 3 http://localhost:8080/ | grep -q "وحید تیونینگ"
           echo "Homepage rendered"
+      - name: Verify shop, variable product, and customer pages
+        run: |
+          STORE_URLS=$(docker compose exec -T wordpress php /tmp/wp-cli.phar eval '
+            $urls = array(
+              "SHOP_URL" => vt_shop_url(),
+              "PRODUCT_URL" => get_permalink(wc_get_product_id_by_sku("VT-H001")),
+              "CART_URL" => wc_get_cart_url(),
+              "CHECKOUT_URL" => wc_get_checkout_url(),
+              "ACCOUNT_URL" => wc_get_page_permalink("myaccount"),
+            );
+            foreach ($urls as $key => $url) {
+              if (!$url || is_wp_error($url)) { throw new Exception("Missing page URL: " . $key); }
+              echo $key . "=" . $url . "\n";
+            }
+          ' --allow-root)
+          printf '%s\n' "$STORE_URLS" | tr -d '\r' >> "$GITHUB_ENV"
+          while IFS='=' read -r name url; do
+            [ -n "$url" ] || exit 1
+            case "$name" in
+              SHOP_URL|PRODUCT_URL|CART_URL|CHECKOUT_URL|ACCOUNT_URL)
+                curl -fsSL --retry 3 --retry-delay 2 "$url" -o "/tmp/${name}.html"
+                grep -q "woodmart-pages.css" "/tmp/${name}.html" || { echo "Stylesheet absent: $name"; exit 1; }
+                ;;
+            esac
+          done <<EOF
+          $STORE_URLS
+          EOF
+          grep -q "vt-woodmart-shop-layout" /tmp/SHOP_URL.html
+          grep -q "vt-pdp-hero" /tmp/PRODUCT_URL.html
+          grep -q "variations_form" /tmp/PRODUCT_URL.html
+          echo "Shop filters, variable product, cart, checkout and account rendered with consistent styles"
       - name: Capture desktop and mobile design screenshots
         run: |
           BROWSER=$(command -v google-chrome || command -v chromium || true)
@@ -54,6 +85,11 @@ jobs:
             "$BROWSER" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --window-size=1440,4300 --screenshot=home-desktop.png http://localhost:8080/ 2>/dev/null
             "$BROWSER" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --window-size=390,6800 --screenshot=home-mobile.png http://localhost:8080/ 2>/dev/null
             "$BROWSER" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --window-size=1024,4500 --screenshot=home-tablet.png http://localhost:8080/ 2>/dev/null
+            "$BROWSER" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --window-size=1440,4300 --screenshot=shop-desktop.png "$SHOP_URL" 2>/dev/null
+            "$BROWSER" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --window-size=1440,4300 --screenshot=product-desktop.png "$PRODUCT_URL" 2>/dev/null
+            "$BROWSER" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --window-size=390,4500 --screenshot=product-mobile.png "$PRODUCT_URL" 2>/dev/null
+            "$BROWSER" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --window-size=1440,4000 --screenshot=cart-desktop.png "$CART_URL" 2>/dev/null
+            "$BROWSER" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --window-size=1440,4000 --screenshot=account-desktop.png "$ACCOUNT_URL" 2>/dev/null
           else
             echo "Browser not installed; skipping visual capture."
           fi
@@ -65,6 +101,11 @@ jobs:
             home-desktop.png
             home-mobile.png
             home-tablet.png
+            shop-desktop.png
+            product-desktop.png
+            product-mobile.png
+            cart-desktop.png
+            account-desktop.png
           if-no-files-found: warn
       - name: Inspect logs on failure
         if: failure()
