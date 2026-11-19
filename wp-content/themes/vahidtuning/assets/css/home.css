@@ -51,9 +51,25 @@ a.vt-home-trust-item:hover { background: #fff7f1; }
 .vt-home-trust-item strong { font-size: 14px; font-weight: 850; }
 .vt-home-trust-item small { color: var(--muted); font-size: 12px; line-height: 1.7; }
 
+/* Ticker band: category keywords as a quiet, scrolling rule */
+.vt-home-ticker { overflow: hidden; margin-top: 64px; padding-block: 16px; background: var(--hm-night-2); color: #efe4d7; border-block: 1px solid #2e261f; }
+.vt-home-ticker-track { display: flex; align-items: center; gap: 22px; width: max-content; font-size: 14px; font-weight: 800; white-space: nowrap; }
+.vt-home-ticker span { color: #f5ebdf; }
+.vt-home-ticker i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: var(--accent); }
+@media (prefers-reduced-motion: no-preference) {
+  .vt-home-ticker-track { animation: vt-home-ticker 38s linear infinite; }
+  .vt-home-ticker:hover .vt-home-ticker-track { animation-play-state: paused; }
+}
+@keyframes vt-home-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 /* Shared section pieces */
 .vt-home-categories, .vt-home-products, .vt-home-collections { padding-block: clamp(60px, 7.5vw, 104px); }
-.vt-home-categories { padding-top: clamp(70px, 8vw, 110px); }
+.vt-home-categories { padding-top: clamp(70px, 8vw, 110px); background: radial-gradient(1200px 380px at 90% -10%, #ffe7d8 0%, transparent 60%), var(--hm-sand); }
+.vt-home-hero::before { position: absolute; z-index: -1; inset-inline: 0; bottom: 0; height: 120px; content: ""; background: linear-gradient(0deg, var(--hm-sand), transparent); pointer-events: none; }
+.vt-home-category::after { position: absolute; inset-inline: 0; top: 0; height: 3px; content: ""; background: var(--accent); transform: scaleX(0); transform-origin: right; transition: transform .35s; }
+.vt-home-category:hover::after { transform: scaleX(1); }
+.vt-home-products .vt-product-card { transition: transform .25s; }
+.vt-home-products .vt-product-card:hover { transform: translateY(-4px); }
 .vt-home-products { background: #fff; }
 .vt-home-section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: clamp(26px, 4vw, 46px); }
 .vt-home-section-head h2, .vt-home-ending h2 { margin: 0; font-size: clamp(28px, 3.8vw, 46px); font-weight: 900; letter-spacing: 0; line-height: 1.5; }

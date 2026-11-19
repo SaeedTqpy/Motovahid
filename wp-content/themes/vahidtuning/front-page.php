@@ -57,6 +57,14 @@ $whatsapp = preg_replace( '/[^0-9]/', '', get_theme_mod( 'vt_whatsapp', '' ) );
         </div>
     </div>
 
+    <div class="vt-home-ticker" aria-hidden="true">
+        <div class="vt-home-ticker-track">
+            <?php for ( $i = 0; $i < 2; $i++ ) : ?>
+                <span>کلاه کاسکت</span><i></i><span>عینک و شیلد</span><i></i><span>دستکش موتور</span><i></i><span>بوت و پوشاک</span><i></i><span>تجهیزات ایمنی</span><i></i><span>قطعات و لوازم</span><i></i>
+            <?php endfor; ?>
+        </div>
+    </div>
+
     <section class="vt-home-categories" id="vt-categories" aria-labelledby="vt-category-title">
         <div class="vt-container">
             <div class="vt-home-section-head">
