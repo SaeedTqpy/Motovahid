@@ -37,6 +37,31 @@
 
   disclosure('[data-vt-menu-toggle]', 'vt-store-nav', mobileNav);
 
+  // The filter sidebar remains visible without JavaScript. Mobile users can collapse it.
+  var catalogFilters = document.querySelector('[data-vt-filter-panel]');
+  if (catalogFilters) {
+    var compactFilters = window.matchMedia('(max-width: 900px)');
+    function syncCatalogFilters() {
+      catalogFilters.open = !compactFilters.matches;
+    }
+    compactFilters.addEventListener('change', syncCatalogFilters);
+    syncCatalogFilters();
+  }
+
+  // Close the category dropdown on outside clicks and Escape.
+  var categoryMenu = document.querySelector('.vt-nav-catalog');
+  if (categoryMenu) {
+    document.addEventListener('click', function (event) {
+      if (categoryMenu.open && !categoryMenu.contains(event.target)) categoryMenu.open = false;
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && categoryMenu.open) {
+        categoryMenu.open = false;
+        categoryMenu.querySelector('summary').focus();
+      }
+    });
+  }
+
   var purchase = document.getElementById('vt-pdp-purchase');
   if (!purchase) return;
 
