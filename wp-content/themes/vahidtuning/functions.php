@@ -44,6 +44,12 @@ function vt_enqueue_assets() {
         $purchase_styles = 'assets/css/purchase.css';
         wp_enqueue_style( 'vt-purchase', get_theme_file_uri( $purchase_styles ), array( 'vt-store-experience' ), (string) filemtime( get_theme_file_path( $purchase_styles ) ) );
     }
+    // Load the WoodMart-inspired presentation after all page-specific theme styles.
+    $inspired_styles = 'assets/css/woodmart-inspired.css';
+    $inspired_dependencies = array_values( array_filter( array( 'vt-store-experience', 'vt-home', 'vt-single-product', 'vt-purchase' ), function( $handle ) {
+        return wp_style_is( $handle, 'enqueued' );
+    } ) );
+    wp_enqueue_style( 'vt-woodmart-inspired', get_theme_file_uri( $inspired_styles ), $inspired_dependencies, (string) filemtime( get_theme_file_path( $inspired_styles ) ) );
     wp_enqueue_script( 'vt-storefront', get_theme_file_uri( 'assets/js/storefront.js' ), array(), (string) filemtime( get_theme_file_path( 'assets/js/storefront.js' ) ), true );
 }
 add_action( 'wp_enqueue_scripts', 'vt_enqueue_assets' );
