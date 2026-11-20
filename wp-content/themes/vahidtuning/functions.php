@@ -52,6 +52,14 @@ function vt_enqueue_assets() {
     wp_enqueue_style( 'vt-woodmart-inspired', get_theme_file_uri( $inspired_styles ), $inspired_dependencies, (string) filemtime( get_theme_file_path( $inspired_styles ) ) );
     $commerce_styles = 'assets/css/woodmart-pages.css';
     wp_enqueue_style( 'vt-woodmart-pages', get_theme_file_uri( $commerce_styles ), array( 'vt-woodmart-inspired' ), (string) filemtime( get_theme_file_path( $commerce_styles ) ) );
+    // Night Trail redesign: global layer, then the homepage layer.
+    $night_styles = 'assets/css/night-trail.css';
+    wp_enqueue_style( 'vt-night-trail', get_theme_file_uri( $night_styles ), array( 'vt-woodmart-pages' ), (string) filemtime( get_theme_file_path( $night_styles ) ) );
+    if ( is_front_page() ) {
+        wp_dequeue_style( 'vt-home' );
+        $night_home = 'assets/css/night-trail-home.css';
+        wp_enqueue_style( 'vt-night-trail-home', get_theme_file_uri( $night_home ), array( 'vt-night-trail' ), (string) filemtime( get_theme_file_path( $night_home ) ) );
+    }
     wp_enqueue_script( 'vt-storefront', get_theme_file_uri( 'assets/js/storefront.js' ), array(), (string) filemtime( get_theme_file_path( 'assets/js/storefront.js' ) ), true );
 }
 add_action( 'wp_enqueue_scripts', 'vt_enqueue_assets' );

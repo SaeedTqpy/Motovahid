@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" role="img" aria-label="Motorcycle protective gear illustration">
 <defs>
-<linearGradient id="shell" x1="122" y1="95" x2="520" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#49544C"/><stop offset=".34" stop-color="#26352E"/><stop offset=".8" stop-color="#131D18"/><stop offset="1" stop-color="#080D0A"/></linearGradient>
-<linearGradient id="hi" x1="180" y1="65" x2="450" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#F3FFB7"/><stop offset=".45" stop-color="#CBFB4A"/><stop offset="1" stop-color="#7EAC1C"/></linearGradient>
-<linearGradient id="visor" x1="190" y1="180" x2="435" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#DDEDF4"/><stop offset=".32" stop-color="#6D9A9C"/><stop offset=".7" stop-color="#233C42"/><stop offset="1" stop-color="#0D2228"/></linearGradient>
+<linearGradient id="shell" x1="122" y1="95" x2="520" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#544D49"/><stop offset=".34" stop-color="#322D29"/><stop offset=".8" stop-color="#1A1816"/><stop offset="1" stop-color="#0C0A09"/></linearGradient>
+<linearGradient id="hi" x1="180" y1="65" x2="450" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#FFC694"/><stop offset=".45" stop-color="#FA7B31"/><stop offset="1" stop-color="#6E625A"/></linearGradient>
+<linearGradient id="visor" x1="190" y1="180" x2="435" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#EBD4C1"/><stop offset=".32" stop-color="#918278"/><stop offset=".7" stop-color="#38312D"/><stop offset="1" stop-color="#1D1A18"/></linearGradient>
 <filter id="drop"><feGaussianBlur stdDeviation="18"/></filter>
 </defs>
-<ellipse cx="340" cy="460" rx="203" ry="27" fill="#17261D" opacity=".19" filter="url(#drop)"/>
+<ellipse cx="340" cy="460" rx="203" ry="27" fill="#221E1B" opacity=".19" filter="url(#drop)"/>
 <g transform="rotate(-11 320 270)">
-<path d="M80 255C136 212 182 204 240 216L399 211C456 206 496 226 549 254L533 317L484 343L407 345L345 333L291 335L224 344L150 338L100 307Z" fill="#15211A" stroke="#080E09" stroke-width="18" stroke-linejoin="round"/>
-<path d="M123 259C183 231 246 243 300 253L304 301C262 316 216 322 159 308L130 295Z" fill="url(#visor)" stroke="#C8FC47" stroke-width="16" stroke-linejoin="round"/>
-<path d="M338 252C399 231 459 234 512 265L500 299C445 318 394 317 341 303Z" fill="url(#visor)" stroke="#C8FC47" stroke-width="16" stroke-linejoin="round"/>
-<path d="M301 252L332 255L342 304L305 306Z" fill="#15221B"/>
-<path d="M104 273L59 280L53 299L108 307M530 273L584 273L584 294L526 308" stroke="#B5EA41" stroke-width="23" stroke-linecap="round"/>
-<path d="M160 258L262 253L211 304L157 301Z" fill="#EDFFFF" opacity=".35"/>
-<path d="M367 255L469 258L417 304L365 300Z" fill="#EDFFFF" opacity=".29"/>
-<path d="M176 354C231 384 400 385 473 353" stroke="#2C3D30" stroke-width="12" stroke-dasharray="10 11"/>
+<path d="M80 255C136 212 182 204 240 216L399 211C456 206 496 226 549 254L533 317L484 343L407 345L345 333L291 335L224 344L150 338L100 307Z" fill="#1E1A18" stroke="#0C0B0A" stroke-width="18" stroke-linejoin="round"/>
+<path d="M123 259C183 231 246 243 300 253L304 301C262 316 216 322 159 308L130 295Z" fill="url(#visor)" stroke="#FC792E" stroke-width="16" stroke-linejoin="round"/>
+<path d="M338 252C399 231 459 234 512 265L500 299C445 318 394 317 341 303Z" fill="url(#visor)" stroke="#FC792E" stroke-width="16" stroke-linejoin="round"/>
+<path d="M301 252L332 255L342 304L305 306Z" fill="#1E1B19"/>
+<path d="M104 273L59 280L53 299L108 307M530 273L584 273L584 294L526 308" stroke="#E8702B" stroke-width="23" stroke-linecap="round"/>
+<path d="M160 258L262 253L211 304L157 301Z" fill="#FFE0C6" opacity=".35"/>
+<path d="M367 255L469 258L417 304L365 300Z" fill="#FFE0C6" opacity=".29"/>
+<path d="M176 354C231 384 400 385 473 353" stroke="#3A332F" stroke-width="12" stroke-dasharray="10 11"/>
 </g>
 </svg>

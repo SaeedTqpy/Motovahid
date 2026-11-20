@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" role="img" aria-label="Motorcycle protective gear illustration">
 <defs>
-<linearGradient id="shell" x1="122" y1="95" x2="520" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#49544C"/><stop offset=".34" stop-color="#26352E"/><stop offset=".8" stop-color="#131D18"/><stop offset="1" stop-color="#080D0A"/></linearGradient>
-<linearGradient id="hi" x1="180" y1="65" x2="450" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#F3FFB7"/><stop offset=".45" stop-color="#CBFB4A"/><stop offset="1" stop-color="#7EAC1C"/></linearGradient>
-<linearGradient id="visor" x1="190" y1="180" x2="435" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#DDEDF4"/><stop offset=".32" stop-color="#6D9A9C"/><stop offset=".7" stop-color="#233C42"/><stop offset="1" stop-color="#0D2228"/></linearGradient>
+<linearGradient id="shell" x1="122" y1="95" x2="520" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#544D49"/><stop offset=".34" stop-color="#322D29"/><stop offset=".8" stop-color="#1A1816"/><stop offset="1" stop-color="#0C0A09"/></linearGradient>
+<linearGradient id="hi" x1="180" y1="65" x2="450" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#FFC694"/><stop offset=".45" stop-color="#FA7B31"/><stop offset="1" stop-color="#6E625A"/></linearGradient>
+<linearGradient id="visor" x1="190" y1="180" x2="435" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#EBD4C1"/><stop offset=".32" stop-color="#918278"/><stop offset=".7" stop-color="#38312D"/><stop offset="1" stop-color="#1D1A18"/></linearGradient>
 <filter id="drop"><feGaussianBlur stdDeviation="18"/></filter>
 </defs>
-<ellipse cx="340" cy="460" rx="203" ry="27" fill="#17261D" opacity=".19" filter="url(#drop)"/>
+<ellipse cx="340" cy="460" rx="203" ry="27" fill="#221E1B" opacity=".19" filter="url(#drop)"/>
 <g transform="rotate(-8 318 280)">
-<path d="M214 96L361 100L370 257L416 321L506 370L530 427C479 456 383 460 293 445L154 442L113 402L141 349L184 302L205 217Z" fill="url(#shell)" stroke="#080F0A" stroke-width="15" stroke-linejoin="round"/>
+<path d="M214 96L361 100L370 257L416 321L506 370L530 427C479 456 383 460 293 445L154 442L113 402L141 349L184 302L205 217Z" fill="url(#shell)" stroke="#0D0B0A" stroke-width="15" stroke-linejoin="round"/>
 <path d="M225 115H351L353 153H219Z" fill="url(#hi)"/>
-<path d="M228 169H346L346 211H222Z" fill="#718534" stroke="#162117" stroke-width="7"/>
-<path d="M218 226L358 219L371 265L292 294L201 275Z" fill="#313F33" stroke="#0F1710" stroke-width="9"/>
-<path d="M215 312L297 310L341 356L439 379" stroke="#C6F649" stroke-width="20" stroke-linecap="round"/>
-<path d="M126 403C224 428 387 426 515 407" stroke="#121913" stroke-width="36" stroke-linecap="round"/>
-<path d="M141 415C249 437 405 440 509 424" stroke="#ACD642" stroke-width="11"/>
-<path d="M254 180V275M298 177V265" stroke="#D9E7CF" stroke-width="11" stroke-linecap="round"/>
-<circle cx="257" cy="226" r="13" fill="#CBFA44"/><circle cx="301" cy="226" r="13" fill="#CBFA44"/>
+<path d="M228 169H346L346 211H222Z" fill="#665B53" stroke="#1E1B19" stroke-width="7"/>
+<path d="M218 226L358 219L371 265L292 294L201 275Z" fill="#3E3732" stroke="#151311" stroke-width="9"/>
+<path d="M215 312L297 310L341 356L439 379" stroke="#F57931" stroke-width="20" stroke-linecap="round"/>
+<path d="M126 403C224 428 387 426 515 407" stroke="#181513" stroke-width="36" stroke-linecap="round"/>
+<path d="M141 415C249 437 405 440 509 424" stroke="#D26B30" stroke-width="11"/>
+<path d="M254 180V275M298 177V265" stroke="#DBC8B8" stroke-width="11" stroke-linecap="round"/>
+<circle cx="257" cy="226" r="13" fill="#F9772B"/><circle cx="301" cy="226" r="13" fill="#F9772B"/>
 </g>
 </svg>
