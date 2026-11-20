@@ -5,7 +5,7 @@
 > **وضعیت:** کد فروشگاه و قالب آماده نصب است. انتشار عمومی مستلزم استقرار وردپرس، فعال‌سازی ووکامرس، تکمیل تنظیمات پرداخت و حمل‌ونقل، اتصال دامنه و اجرای تست‌های پذیرش است. تصاویر محصول فعلاً تصویرسازی اختصاصی هستند، نه عکس واقعی کالا.
 
 ## قابلیت‌های پیاده‌شده
-- صفحه اصلی اختصاصی با بنر آفرود، هویت بصری زغالی/فسفری، شش دسته‌بندی، محصولات پویا و بنر تبلیغاتی
+- صفحه اصلی با طراحی «پیست شبانه»: تم تیره با نارنجی برند، خطوط توپوگرافی، بنر مورب، نوار متحرک دسته‌ها، چیدمان بنتو برای شش دسته، محصولات پویا و انیمیشن ظاهرشدن هنگام اسکرول (با رعایت کاهش حرکت)
 - فارسی، راست‌چین، موبایل/تبلت/دسکتاپ، منوی موبایل، جستجوی کالا، دسترس‌پذیری پایه و کاهش حرکت برای کاربران حساس
 - یکپارچگی واقعی WooCommerce: دسته‌بندی، آرشیو، مرتب‌سازی، فیلتر بازه قیمت، صفحه محصول، انتخاب سایز، سبد خرید، تسویه‌حساب، حساب کاربری، سفارش‌ها و موجودی
 - کارت‌های اختصاصی محصول؛ تصاویر پیش‌فرض SVG خودمیزبان تا زمان بارگذاری عکس واقعی
@@ -60,7 +60,8 @@ wp-content/
     header.php / footer.php  # global shell
     page.php / index.php / search.php
     style.css                # design system + mobile + WooCommerce
-    assets/js/storefront.js  # responsive menu/search/filters
+    assets/css/night-trail*.css # Night Trail redesign layer (global + homepage)
+    assets/js/storefront.js  # responsive menu/search/filters, scroll reveal
     assets/img/              # original SVG demo illustrations
     inc/woocommerce.php      # currency + single-product illustration fallback
     woocommerce/

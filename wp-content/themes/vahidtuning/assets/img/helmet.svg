@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" role="img" aria-label="Motorcycle protective gear illustration">
 <defs>
-<linearGradient id="shell" x1="122" y1="95" x2="520" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#49544C"/><stop offset=".34" stop-color="#26352E"/><stop offset=".8" stop-color="#131D18"/><stop offset="1" stop-color="#080D0A"/></linearGradient>
-<linearGradient id="hi" x1="180" y1="65" x2="450" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#F3FFB7"/><stop offset=".45" stop-color="#CBFB4A"/><stop offset="1" stop-color="#7EAC1C"/></linearGradient>
-<linearGradient id="visor" x1="190" y1="180" x2="435" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#DDEDF4"/><stop offset=".32" stop-color="#6D9A9C"/><stop offset=".7" stop-color="#233C42"/><stop offset="1" stop-color="#0D2228"/></linearGradient>
+<linearGradient id="shell" x1="122" y1="95" x2="520" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#544D49"/><stop offset=".34" stop-color="#322D29"/><stop offset=".8" stop-color="#1A1816"/><stop offset="1" stop-color="#0C0A09"/></linearGradient>
+<linearGradient id="hi" x1="180" y1="65" x2="450" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#FFC694"/><stop offset=".45" stop-color="#FA7B31"/><stop offset="1" stop-color="#6E625A"/></linearGradient>
+<linearGradient id="visor" x1="190" y1="180" x2="435" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#EBD4C1"/><stop offset=".32" stop-color="#918278"/><stop offset=".7" stop-color="#38312D"/><stop offset="1" stop-color="#1D1A18"/></linearGradient>
 <filter id="drop"><feGaussianBlur stdDeviation="18"/></filter>
 </defs>
-<ellipse cx="340" cy="460" rx="203" ry="27" fill="#17261D" opacity=".19" filter="url(#drop)"/>
+<ellipse cx="340" cy="460" rx="203" ry="27" fill="#221E1B" opacity=".19" filter="url(#drop)"/>
 <g transform="rotate(-7 320 290)">
-<path d="M130 289C119 197 175 117 282 100C382 82 486 132 514 217L521 294L479 354L422 368L381 436L251 447L204 407L143 399L118 352L130 289Z" fill="url(#shell)" stroke="#080E0A" stroke-width="15" stroke-linejoin="round"/>
-<path d="M157 213C196 142 278 123 360 139L444 182L475 222C427 189 351 179 274 196L174 246Z" fill="#C7FF49"/>
-<path d="M174 234C238 197 364 187 473 239L445 306L335 321L220 317L164 281Z" fill="#101A16" stroke="#6E8D33" stroke-width="10"/>
-<path d="M188 250C273 217 371 225 447 253L421 289L339 303L212 294Z" fill="url(#visor)" stroke="#263C3E" stroke-width="7"/>
-<path d="M209 248L321 230L260 286L203 281Z" fill="#EBFFEE" opacity=".42"/>
-<path d="M167 319L243 328L288 369L364 362L406 330L475 318L450 372L387 412L254 417L184 382Z" fill="#202C25" stroke="#060D09" stroke-width="10"/>
-<path d="M240 349L301 376L355 375L413 349" stroke="#C9FD4D" stroke-width="13" stroke-linecap="round"/>
-<path d="M266 397H365M291 410H346" stroke="#748779" stroke-width="8" stroke-linecap="round"/>
-<path d="M140 259L111 232L118 198L183 185L196 206" fill="#1E2B22" stroke="#0C160E" stroke-width="10"/>
-<path d="M132 196L213 149L245 138" stroke="#F3FFB1" stroke-width="12" stroke-linecap="round"/>
-<path d="M448 181L493 199L518 235" stroke="#99C82C" stroke-width="12" stroke-linecap="round"/>
-<path d="M475 314L516 295" stroke="#BCF43D" stroke-width="13"/>
-<circle cx="463" cy="336" r="13" fill="#C4F24D" stroke="#121A14" stroke-width="7"/>
+<path d="M130 289C119 197 175 117 282 100C382 82 486 132 514 217L521 294L479 354L422 368L381 436L251 447L204 407L143 399L118 352L130 289Z" fill="url(#shell)" stroke="#0C0B0A" stroke-width="15" stroke-linejoin="round"/>
+<path d="M157 213C196 142 278 123 360 139L444 182L475 222C427 189 351 179 274 196L174 246Z" fill="#FF7B2F"/>
+<path d="M174 234C238 197 364 187 473 239L445 306L335 321L220 317L164 281Z" fill="#171513" stroke="#6A5E56" stroke-width="10"/>
+<path d="M188 250C273 217 371 225 447 253L421 289L339 303L212 294Z" fill="url(#visor)" stroke="#37312D" stroke-width="7"/>
+<path d="M209 248L321 230L260 286L203 281Z" fill="#FFDFC4" opacity=".42"/>
+<path d="M167 319L243 328L288 369L364 362L406 330L475 318L450 372L387 412L254 417L184 382Z" fill="#2A2522" stroke="#0A0909" stroke-width="10"/>
+<path d="M240 349L301 376L355 375L413 349" stroke="#FD7D33" stroke-width="13" stroke-linecap="round"/>
+<path d="M266 397H365M291 410H346" stroke="#877C74" stroke-width="8" stroke-linecap="round"/>
+<path d="M140 259L111 232L118 198L183 185L196 206" fill="#282421" stroke="#13110F" stroke-width="10"/>
+<path d="M132 196L213 149L245 138" stroke="#FFB88E" stroke-width="12" stroke-linecap="round"/>
+<path d="M448 181L493 199L518 235" stroke="#C8652C" stroke-width="12" stroke-linecap="round"/>
+<path d="M475 314L516 295" stroke="#F37126" stroke-width="13"/>
+<circle cx="463" cy="336" r="13" fill="#F07A35" stroke="#181614" stroke-width="7"/>
 </g>
 </svg>

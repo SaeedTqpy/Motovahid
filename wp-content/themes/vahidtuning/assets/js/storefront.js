@@ -116,3 +116,37 @@
     updateSteps();
   });
 }());
+
+/* Night Trail: header state on scroll and reveal-on-scroll animations. */
+(function () {
+  'use strict';
+  var header = document.getElementById('vt-header');
+  if (header) {
+    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  var items = document.querySelectorAll('[data-reveal]');
+  if (!items.length) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('is-in'); });
+    return;
+  }
+  // Stagger siblings that share a parent.
+  items.forEach(function (el) {
+    var siblings = Array.prototype.filter.call(el.parentElement.children, function (c) { return c.hasAttribute('data-reveal'); });
+    var index = siblings.indexOf(el);
+    if (index > 0) el.style.setProperty('--nt-delay', Math.min(index, 6) * 0.08 + 's');
+  });
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  items.forEach(function (el) { observer.observe(el); });
+}());
