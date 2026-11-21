@@ -1,5 +1,5 @@
 <?php
-/** Store footer. @package VahidTuning */
+/** Store footer. @package MotoVahid */
 defined( 'ABSPATH' ) || exit;
 $phone = get_theme_mod( 'vt_phone', '' );
 $instagram = get_theme_mod( 'vt_instagram', '' );
@@ -35,7 +35,7 @@ $address = get_theme_mod( 'vt_address', '' );
                 </div>
             <?php endif; ?>
         </div>
-        <div class="vt-footer-bottom">© <?php echo esc_html( vt_format_number( wp_date( 'Y' ) ) ); ?> وحید تیونینگ</div>
+        <div class="vt-footer-bottom">© <?php echo esc_html( vt_format_number( wp_date( 'Y' ) ) ); ?> موتو وحید</div>
     </div>
 </footer>
 <?php if ( vt_has_woocommerce() ) : ?>

@@ -21,7 +21,7 @@ jobs:
       - name: Install WordPress and WooCommerce
         run: |
           docker compose exec -T wordpress php /tmp/wp-cli.phar core install \
-            --url=http://localhost:8080 --title="Vahid Tuning Integration" \
+            --url=http://localhost:8080 --title="MotoVahid Integration" \
             --admin_user=ciadmin --admin_password=ci-local-test-password \
             --admin_email=ci@example.invalid --skip-email --allow-root
           docker compose exec -T wordpress php /tmp/wp-cli.phar plugin install woocommerce --activate --allow-root
@@ -45,7 +45,7 @@ jobs:
           ' --allow-root
       - name: Assert storefront renders over HTTP
         run: |
-          curl -fsSL --retry 8 --retry-delay 3 http://localhost:8080/ | grep -q "وحید تیونینگ"
+          curl -fsSL --retry 8 --retry-delay 3 http://localhost:8080/ | grep -q "موتو وحید"
           echo "Homepage rendered"
       - name: Verify shop, variable product, and customer pages
         run: |
@@ -96,7 +96,7 @@ jobs:
       - name: Upload design screenshots
         uses: actions/upload-artifact@v4
         with:
-          name: vahidtuning-design-preview
+          name: motovahid-design-preview
           path: |
             home-desktop.png
             home-mobile.png

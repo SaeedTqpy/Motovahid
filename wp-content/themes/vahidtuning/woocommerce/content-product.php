@@ -1,7 +1,7 @@
 <?php
 /**
  * Product tile: uses WooCommerce's real catalog state and add-to-cart.
- * @package VahidTuning
+ * @package MotoVahid
  */
 defined( 'ABSPATH' ) || exit;
 global $product;

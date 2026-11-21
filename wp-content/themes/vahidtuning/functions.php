@@ -1,8 +1,8 @@
 <?php
 /**
- * Vahid Tuning: bespoke, right-to-left WooCommerce storefront.
+ * MotoVahid: bespoke, right-to-left WooCommerce storefront.
  *
- * @package VahidTuning
+ * @package MotoVahid
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
@@ -24,6 +24,20 @@ function vt_setup() {
     register_nav_menus( array( 'primary' => 'منوی اصلی', 'footer' => 'منوی پایین صفحه' ) );
 }
 add_action( 'after_setup_theme', 'vt_setup' );
+
+/**
+ * WordPress stores its site title in the database, not in the theme.
+ * Rebrand existing default titles without altering unrelated custom titles.
+ */
+function vt_migrate_site_title_to_motovahid() {
+    $old_title = (string) get_option( 'blogname', '' );
+    $new_title = str_ireplace( array( 'Vahid Tuning', 'Vahidtuning' ), 'موتو وحید', $old_title );
+    $new_title = str_replace( 'وحید تیونینگ', 'موتو وحید', $new_title );
+    if ( $new_title !== $old_title ) {
+        update_option( 'blogname', $new_title );
+    }
+}
+add_action( 'init', 'vt_migrate_site_title_to_motovahid' );
 
 function vt_enqueue_assets() {
     $dependencies = array_values( array_filter( array( 'woocommerce-general', 'woocommerce-layout', 'woocommerce-smallscreen' ), function( $handle ) {
@@ -65,7 +79,7 @@ function vt_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'vt_enqueue_assets' );
 
 function vt_customize( $customizer ) {
-    $customizer->add_section( 'vt_store', array( 'title' => 'تنظیمات فروشگاه وحید تیونینگ', 'priority' => 32 ) );
+    $customizer->add_section( 'vt_store', array( 'title' => 'تنظیمات فروشگاه موتو وحید', 'priority' => 32 ) );
     $settings = array(
         'vt_hero_title' => array( 'تیتر صفحه نخست', VT_HERO_TITLE, 'text' ),
         'vt_hero_description' => array( 'توضیح صفحه نخست', VT_HERO_DESCRIPTION, 'textarea' ),
@@ -105,9 +119,9 @@ function vt_persian_price_html( $html ) {
 
 function vt_brand() {
     ?>
-    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-brand" aria-label="وحید تیونینگ، صفحه اصلی">
-        <span class="vt-brand-symbol" aria-hidden="true">V</span>
-        <span class="vt-brand-copy"><strong>وحید تیونینگ</strong><small lang="en" dir="ltr">VAHID TUNING</small></span>
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-brand" aria-label="موتو وحید، صفحه اصلی">
+        <span class="vt-brand-symbol" aria-hidden="true">M</span>
+        <span class="vt-brand-copy"><strong>موتو وحید</strong><small lang="en" dir="ltr">MOTOVAHID</small></span>
     </a>
     <?php
 }
@@ -220,7 +234,7 @@ add_filter( 'woocommerce_breadcrumb_defaults', function( $args ) { $args['delimi
 
 function vt_wc_missing_notice() {
     if ( ! vt_has_woocommerce() && current_user_can( 'activate_plugins' ) ) {
-        echo '<div class="notice notice-warning"><p>برای فعال‌شدن فروشگاه وحید تیونینگ، افزونه WooCommerce را نصب و فعال کنید.</p></div>';
+        echo '<div class="notice notice-warning"><p>برای فعال‌شدن فروشگاه موتو وحید، افزونه WooCommerce را نصب و فعال کنید.</p></div>';
     }
 }
 add_action( 'admin_notices', 'vt_wc_missing_notice' );

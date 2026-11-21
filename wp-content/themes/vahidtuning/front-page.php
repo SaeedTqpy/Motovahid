@@ -1,5 +1,5 @@
 <?php
-/** Home storefront — "Night Trail" design. @package VahidTuning */
+/** Home storefront — "Night Trail" design. @package MotoVahid */
 get_header();
 
 $hero_title = get_theme_mod( 'vt_hero_title', VT_HERO_TITLE );
@@ -140,7 +140,7 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
         <img class="nt-finish-image" src="<?php echo esc_url( vt_image_url( 'enduro-hero.jpg' ) ); ?>" alt="" width="1536" height="1024" loading="lazy">
         <div class="nt-finish-flag" aria-hidden="true"></div>
         <div class="vt-container nt-finish-inner" data-reveal>
-            <div><p class="nt-eyebrow">وحید تیونینگ</p><h2 id="vt-finish-title">مسیر بعدی منتظرته.</h2><p>تجهیزات تریل، اندرو و آفرود را در فروشگاه ببین.</p></div>
+            <div><p class="nt-eyebrow">موتو وحید</p><h2 id="vt-finish-title">مسیر بعدی منتظرته.</h2><p>تجهیزات تریل، اندرو و آفرود را در فروشگاه ببین.</p></div>
             <div class="nt-actions">
                 <a class="nt-btn" href="<?php echo esc_url( vt_shop_url() ); ?>"><span>ورود به فروشگاه</span> <?php vt_icon( 'arrow' ); ?></a>
                 <?php if ( $whatsapp ) : ?><a class="nt-btn nt-btn-ghost" href="<?php echo esc_url( 'https://wa.me/' . $whatsapp ); ?>">گفتگو در واتساپ</a><?php endif; ?>

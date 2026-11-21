@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Vahid Tuning - Demo Catalog
+ * Plugin Name: MotoVahid - Demo Catalog
  * Description: Non-destructive, one-click Persian sample catalog for WooCommerce.
  * Version: 1.0.0
  * Requires PHP: 8.0
@@ -10,14 +10,14 @@
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'admin_menu', function() {
-    add_management_page( 'محصولات نمونه وحید تیونینگ', 'محصولات نمونه وحید تیونینگ', 'manage_options', 'vt-demo-products', 'vt_demo_admin_screen' );
+    add_management_page( 'محصولات نمونه موتو وحید', 'محصولات نمونه موتو وحید', 'manage_options', 'vt-demo-products', 'vt_demo_admin_screen' );
 } );
 
 function vt_demo_admin_screen() {
     if ( ! current_user_can( 'manage_options' ) ) { wp_die( esc_html__( 'Access denied.' ) ); }
     ?>
     <div class="wrap" dir="rtl">
-        <h1>وارد کردن محصولات نمونه وحید تیونینگ</h1>
+        <h1>وارد کردن محصولات نمونه موتو وحید</h1>
         <?php if ( isset( $_GET['vt_imported'] ) ) : ?>
             <div class="notice notice-success"><p>تعداد <?php echo esc_html( (string) absint( $_GET['vt_imported'] ) ); ?> محصول جدید ساخته شد. محصولات قبلی و تنظیمات فروشگاه حفظ شدند.</p></div>
         <?php endif; ?>
@@ -94,7 +94,7 @@ add_action( 'admin_post_vt_import_demo', function() {
             $product->set_catalog_visibility( 'visible' );
             $product->set_sku( $sku );
             $product->set_category_ids( array( $term_ids[ $category ] ) );
-            $product->set_description( 'محصول نمایشی فروشگاه وحید تیونینگ برای بررسی امکانات سایت. مشخصات فنی، موجودی و قیمت آزمایشی هستند و باید پیش از فروش واقعی بررسی و جایگزین شوند.' );
+            $product->set_description( 'محصول نمایشی فروشگاه موتو وحید برای بررسی امکانات سایت. مشخصات فنی، موجودی و قیمت آزمایشی هستند و باید پیش از فروش واقعی بررسی و جایگزین شوند.' );
             $product->set_short_description( 'انتخابی مناسب برای تکمیل تجهیزات آفرود و موتور تریل. اطلاعات محصول نمونه است.' );
             if ( $sizes ) {
                 $attribute = new WC_Product_Attribute();
@@ -128,7 +128,7 @@ add_action( 'admin_post_vt_import_demo', function() {
             }
             ++$created;
         } catch ( Exception $error ) {
-            error_log( 'Vahid Tuning demo import: ' . $sku . ': ' . $error->getMessage() );
+            error_log( 'MotoVahid demo import: ' . $sku . ': ' . $error->getMessage() );
         }
     }
     // These settings are applied only on explicit admin action; real store settings remain editable.

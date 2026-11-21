@@ -314,7 +314,7 @@ body:not(.home) { background: var(--nt-soft); }
   pointer-events: none;
 }
 .vt-footer::after {
-  content: "VAHID TUNING";
+  content: "MOTOVAHID";
   position: absolute;
   inset: auto 0 -0.18em;
   text-align: center;

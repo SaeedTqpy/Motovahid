@@ -1,5 +1,5 @@
 <?php
-/** Store header. @package VahidTuning */
+/** Store header. @package MotoVahid */
 defined( 'ABSPATH' ) || exit;
 ?><!doctype html>
 <html lang="fa" dir="rtl">
