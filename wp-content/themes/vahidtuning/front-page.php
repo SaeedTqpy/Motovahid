@@ -5,8 +5,6 @@ get_header();
 $hero_title = get_theme_mod( 'vt_hero_title', VT_HERO_TITLE );
 $category_catalog = vt_catalog_categories();
 $products = vt_home_products();
-$category_count = count( $category_catalog );
-$product_count = vt_has_woocommerce() ? (int) wp_count_posts( 'product' )->publish : 0;
 $whatsapp = preg_replace( '/[^0-9]/', '', get_theme_mod( 'vt_whatsapp', '' ) );
 $ticker = array( 'تریل', 'اندرو', 'آفرود' );
 foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
@@ -28,13 +26,6 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
                     <a class="nt-btn nt-btn-ghost" href="#vt-categories">دسته‌بندی‌ها</a>
                 </div>
             </div>
-            <ul class="nt-timing" data-reveal aria-label="فروشگاه در یک نگاه">
-                <li><small>دسته تخصصی</small><strong><?php echo esc_html( vt_format_number( $category_count ) ); ?></strong></li>
-                <?php if ( $product_count > 0 ) : ?>
-                    <li><small>محصول در فروشگاه</small><strong><?php echo esc_html( vt_format_number( $product_count ) ); ?></strong></li>
-                <?php endif; ?>
-                <li><small>برای مسیرهای</small><strong class="nt-timing-word">تریل · اندرو</strong></li>
-            </ul>
         </div>
         <a class="nt-scroll-cue" href="#vt-categories" aria-label="رفتن به دسته‌بندی‌ها"><span></span></a>
     </section>

@@ -46,7 +46,11 @@ jobs:
       - name: Assert storefront renders over HTTP
         run: |
           curl -fsSL --retry 8 --retry-delay 3 http://localhost:8080/ | grep -q "موتو وحید"
-          echo "Homepage rendered"
+          curl -fsSL http://localhost:8080/ -o /tmp/motovahid-home.html
+          if grep -q 'class="nt-timing"' /tmp/motovahid-home.html; then
+            echo "Unexpected hero timing board"; exit 1
+          fi
+          echo "Homepage rendered without timing board"
       - name: Verify shop, variable product, and customer pages
         run: |
           STORE_URLS=$(docker compose exec -T wordpress php /tmp/wp-cli.phar eval '

@@ -73,7 +73,7 @@ body.home { background: var(--nt-bg); color: var(--nt-text); }
 .nt-hero-inner {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   align-items: end;
   gap: 40px;
   padding-block: 96px 120px;
@@ -130,30 +130,6 @@ body.home { background: var(--nt-bg); color: var(--nt-text); }
 }
 .nt-hero-lead { max-width: 520px; color: #5a5149; font-size: 17px; line-height: 2; }
 .nt-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
-
-/* Timing board */
-.nt-timing {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 1px;
-  min-width: 230px;
-  background: var(--nt-line);
-  border-top: 3px solid var(--nt-accent);
-  box-shadow: var(--nt-shadow-lg);
-}
-.nt-timing li {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, .96);
-}
-.nt-timing small { color: var(--nt-muted); font-size: 12px; }
-.nt-timing strong { color: var(--nt-ink); font-size: 30px; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
-.nt-timing .nt-timing-word { font-size: 16px; color: var(--nt-accent-text); }
 
 .nt-scroll-cue {
   position: absolute;
@@ -338,8 +314,6 @@ body.home { background: var(--nt-bg); color: var(--nt-text); }
 /* ───────── Responsive ───────── */
 @media (max-width: 1080px) {
   .nt-hero-inner { grid-template-columns: 1fr; }
-  .nt-timing { grid-auto-flow: column; grid-auto-columns: 1fr; min-width: 0; max-width: 620px; }
-  .nt-timing li { flex-direction: column-reverse; align-items: flex-start; gap: 6px; }
   .nt-bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
   .nt-tile, .nt-tile-2, .nt-tile-3 { grid-column: span 1; justify-content: flex-end; }
   .nt-tile-1 { grid-column: span 2; grid-row: span 1; justify-content: center; }
@@ -358,9 +332,6 @@ body.home { background: var(--nt-bg); color: var(--nt-text); }
   .nt-hero h1 { font-size: clamp(40px, 12vw, 56px); margin-block: 20px 16px; }
   .nt-hero-lead { font-size: 15px; }
   .nt-actions .nt-btn { flex: 1 1 auto; justify-content: center; }
-  .nt-timing li { padding: 12px 14px; }
-  .nt-timing strong { font-size: 22px; }
-  .nt-timing .nt-timing-word { font-size: 13px; }
   .nt-scroll-cue, .nt-hero-watermark { display: none; }
   .nt-ticker span { font-size: 16px; }
   .nt-head { flex-direction: column; align-items: flex-start; margin-bottom: 26px; }
