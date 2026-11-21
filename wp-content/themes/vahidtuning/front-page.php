@@ -73,7 +73,6 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
             <div class="nt-bento">
                 <?php $category_index = 0; foreach ( $category_catalog as $slug => $category ) : $category_index++; ?>
                     <a class="nt-tile nt-tile-<?php echo esc_attr( $category_index ); ?>" href="<?php echo esc_url( vt_category_url( $slug ) ); ?>" data-reveal>
-                        <span class="nt-tile-index" aria-hidden="true" dir="ltr"><?php echo esc_html( sprintf( '%02d', $category_index ) ); ?></span>
                         <span class="nt-tile-image"><img src="<?php echo esc_url( vt_image_url( str_replace( array( 'category-', '.jpg' ), array( 'cutout-', '.webp' ), $category['image'] ) ) ); ?>" alt="" width="512" height="512" loading="lazy"></span>
                         <span class="nt-tile-copy">
                             <strong><?php echo esc_html( $category['name'] ); ?></strong>

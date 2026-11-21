@@ -221,8 +221,6 @@ body.home { background: var(--nt-bg); color: var(--nt-text); }
 }
 .nt-tile:hover { border-color: rgba(255, 107, 26, .5); box-shadow: var(--nt-shadow-lg); }
 .nt-tile:hover::before { opacity: 1; }
-.nt-tile-index { position: absolute; top: 14px; right: 20px; font: 900 italic 54px/1 Arial, sans-serif; color: transparent; -webkit-text-stroke: 1px rgba(21, 18, 15, .18); transition: -webkit-text-stroke-color .3s; }
-.nt-tile:hover .nt-tile-index { -webkit-text-stroke-color: var(--nt-accent); }
 .nt-tile-image { position: absolute; inset: 12% 40% 8% 2%; z-index: -1; display: grid; place-items: center; }
 .nt-tile-1 .nt-tile-image { inset: 6% 26% 24% 4%; }
 .nt-tile-2 .nt-tile-image, .nt-tile-3 .nt-tile-image { inset: 6% 42% 6% 4%; }
@@ -344,7 +342,6 @@ body.home { background: var(--nt-bg); color: var(--nt-text); }
   .nt-tile-1 .nt-tile-image, .nt-tile-6 .nt-tile-image { inset: 6% 46% 6% 2%; }
   .nt-tile-copy strong { font-size: 17px; }
   .nt-tile-1 .nt-tile-copy strong { font-size: 24px; }
-  .nt-tile-index { font-size: 38px; right: 14px; }
   .nt-collection-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
   .nt-collection-main { grid-row: auto; }
   .nt-collection-main img { width: 60%; align-self: center; }
