@@ -1,3 +1,4 @@
+name: vahidtuning
 # Local development only. Do not deploy this Compose stack to the public internet as-is.
 services:
   db:

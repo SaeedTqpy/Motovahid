@@ -22,10 +22,10 @@ defined( 'ABSPATH' ) || exit;
     <div class="vt-container vt-header-inner">
         <?php vt_brand(); ?>
         <form method="get" role="search" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-search-form">
-            <label class="screen-reader-text" for="vt-search-field">جستجوی محصولات</label>
-            <input id="vt-search-field" type="search" name="s" required placeholder="جستجو در تجهیزات، مدل یا قطعه…" value="<?php echo esc_attr( get_search_query( false ) ); ?>">
+            <label class="screen-reader-text" for="vt-search-field">جست‌وجوی محصولات</label>
+            <input id="vt-search-field" type="search" name="s" required placeholder="مثلاً کلاه کاسکت یا نام قطعه" value="<?php echo esc_attr( get_search_query( false ) ); ?>">
             <?php if ( vt_has_woocommerce() ) : ?><input type="hidden" name="post_type" value="product"><?php endif; ?>
-            <button type="submit" aria-label="جستجو"><?php vt_icon( 'search' ); ?></button>
+            <button type="submit" aria-label="جست‌وجو"><?php vt_icon( 'search' ); ?></button>
         </form>
         <div class="vt-header-actions">
             <a class="vt-icon-btn vt-account-link" href="<?php echo esc_url( vt_account_url() ); ?>"><?php vt_icon( 'user' ); ?><span>حساب کاربری</span></a>
@@ -41,7 +41,7 @@ defined( 'ABSPATH' ) || exit;
             <details class="vt-nav-catalog">
                 <summary><?php vt_icon( 'grid' ); ?> دسته‌بندی محصولات <span class="vt-nav-catalog-chevron"><?php vt_icon( 'chevron' ); ?></span></summary>
                 <div class="vt-nav-catalog-menu">
-                    <a href="<?php echo esc_url( vt_shop_url() ); ?>" class="vt-nav-all-products">همه محصولات <?php vt_icon( 'arrow' ); ?></a>
+                    <a href="<?php echo esc_url( vt_shop_url() ); ?>" class="vt-nav-all-products">همهٔ محصولات <?php vt_icon( 'arrow' ); ?></a>
                     <?php foreach ( vt_catalog_categories() as $slug => $category ) : ?>
                         <a href="<?php echo esc_url( vt_category_url( $slug ) ); ?>"><?php echo esc_html( $category['name'] ); ?><?php vt_icon( 'chevron' ); ?></a>
                     <?php endforeach; ?>

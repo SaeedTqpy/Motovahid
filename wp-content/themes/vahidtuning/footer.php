@@ -15,7 +15,7 @@ $address = get_theme_mod( 'vt_address', '' );
             </div>
             <div class="vt-footer-column">
                 <h3>خرید</h3>
-                <a href="<?php echo esc_url( vt_shop_url() ); ?>">همه محصولات</a>
+                <a href="<?php echo esc_url( vt_shop_url() ); ?>">همهٔ محصولات</a>
                 <a href="<?php echo esc_url( vt_cart_url() ); ?>">سبد خرید</a>
                 <a href="<?php echo esc_url( vt_account_url() ); ?>">حساب و پیگیری سفارش</a>
             </div>
@@ -45,6 +45,22 @@ $address = get_theme_mod( 'vt_address', '' );
         <a href="<?php echo esc_url( vt_cart_url() ); ?>"<?php if ( is_cart() ) : ?> aria-current="page"<?php endif; ?>><?php vt_icon( 'bag' ); ?><span>سبد خرید</span></a>
         <a href="<?php echo esc_url( vt_account_url() ); ?>"<?php if ( is_account_page() ) : ?> aria-current="page"<?php endif; ?>><?php vt_icon( 'user' ); ?><span>حساب من</span></a>
     </nav>
+<?php endif; ?>
+<?php if ( vt_has_woocommerce() ) : ?>
+<dialog class="vt-cart-dialog" aria-labelledby="vt-cart-dialog-title" aria-describedby="vt-cart-dialog-description" data-vt-cart-dialog>
+    <div class="vt-cart-dialog-inner">
+        <button class="vt-cart-dialog-close" type="button" data-vt-cart-close aria-label="بستن پنجره">×</button>
+        <div class="vt-cart-dialog-icon" aria-hidden="true"><?php vt_icon( 'check' ); ?></div>
+        <p class="vt-cart-dialog-kicker">سبد خرید موتو وحید</p>
+        <h2 id="vt-cart-dialog-title">به سبد خرید اضافه شد</h2>
+        <p id="vt-cart-dialog-description" class="vt-cart-dialog-description" data-vt-cart-description>محصول به سبد خرید اضافه شد.</p>
+        <div class="vt-cart-dialog-actions">
+            <a class="vt-cart-dialog-checkout" href="<?php echo esc_url( wc_get_checkout_url() ); ?>">ادامه به تسویه‌حساب</a>
+            <button class="vt-cart-dialog-continue" type="button" data-vt-cart-close>ادامه خرید</button>
+        </div>
+        <a class="vt-cart-dialog-cart" href="<?php echo esc_url( vt_cart_url() ); ?>">مشاهده سبد خرید</a>
+    </div>
+</dialog>
 <?php endif; ?>
 <?php wp_footer(); ?>
 </body></html>

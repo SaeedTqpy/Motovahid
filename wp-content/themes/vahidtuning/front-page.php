@@ -19,11 +19,11 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
         <div class="vt-container nt-hero-inner">
             <div class="nt-hero-copy">
                 <p class="nt-kicker" data-reveal><span class="nt-plate" lang="en" dir="ltr">VT</span> تجهیزات تریل، اندرو و آفرود</p>
-                <h1 id="vt-home-title" data-reveal><?php if ( VT_HERO_TITLE === $hero_title ) : ?><span>برای مسیرهای</span><em>خارج از جاده</em><?php else : ?><?php echo esc_html( $hero_title ); ?><?php endif; ?></h1>
+                <h1 id="vt-home-title" data-reveal><?php if ( VT_HERO_TITLE === $hero_title ) : ?><span>آمادهٔ مسیرهای</span><em>فراتر از جاده</em><?php else : ?><?php echo esc_html( $hero_title ); ?><?php endif; ?></h1>
                 <p class="nt-hero-lead" data-reveal><?php echo esc_html( get_theme_mod( 'vt_hero_description', VT_HERO_DESCRIPTION ) ); ?></p>
                 <div class="nt-actions" data-reveal>
-                    <a class="nt-btn" href="<?php echo esc_url( vt_shop_url() ); ?>"><span>مشاهده تجهیزات</span> <?php vt_icon( 'arrow' ); ?></a>
-                    <a class="nt-btn nt-btn-ghost" href="#vt-categories">دسته‌بندی‌ها</a>
+                    <a class="nt-btn" href="<?php echo esc_url( vt_shop_url() ); ?>"><span>مشاهده محصولات</span> <?php vt_icon( 'arrow' ); ?></a>
+                    <a class="nt-btn nt-btn-ghost" href="#vt-categories">مرور دسته‌بندی‌ها</a>
                 </div>
             </div>
         </div>
@@ -67,8 +67,8 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
     <section class="nt-section nt-categories" id="vt-categories" aria-labelledby="vt-category-title">
         <div class="vt-container">
             <div class="nt-head" data-reveal>
-                <div><p class="nt-eyebrow">تجهیزات مسیر</p><h2 id="vt-category-title">برای هر بخش از مسیر</h2></div>
-                <a class="nt-link" href="<?php echo esc_url( vt_shop_url() ); ?>">همه محصولات <?php vt_icon( 'arrow' ); ?></a>
+                <div><p class="nt-eyebrow">خرید بر اساس دسته‌بندی</p><h2 id="vt-category-title">تجهیزات برای هر مسیر</h2></div>
+                <a class="nt-link" href="<?php echo esc_url( vt_shop_url() ); ?>">همهٔ محصولات <?php vt_icon( 'arrow' ); ?></a>
             </div>
             <div class="nt-bento">
                 <?php $category_index = 0; foreach ( $category_catalog as $slug => $category ) : $category_index++; ?>
@@ -84,11 +84,13 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
         </div>
     </section>
 
+    <?php get_template_part( 'template-parts/home', 'sale' ); ?>
+
     <section class="nt-section nt-products vt-home-products" aria-labelledby="vt-products-title">
         <span class="nt-topo nt-topo-soft" aria-hidden="true"></span>
         <div class="vt-container">
             <div class="nt-head" data-reveal>
-                <div><p class="nt-eyebrow">منتخب فروشگاه</p><h2 id="vt-products-title">تجهیزات برای مسیر بعدی</h2></div>
+                <div><p class="nt-eyebrow">محصولات فروشگاه</p><h2 id="vt-products-title">تجهیزات برای مسیر بعدی</h2></div>
                 <a class="nt-link" href="<?php echo esc_url( vt_shop_url() ); ?>">مشاهده فروشگاه <?php vt_icon( 'arrow' ); ?></a>
             </div>
             <?php if ( $products ) : ?>
@@ -98,7 +100,7 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
                 </ul>
                 <?php wp_reset_postdata(); ?>
             <?php else : ?>
-                <div class="vt-empty-products"><span class="vt-empty-icon"><?php vt_icon( 'bag' ); ?></span><div><strong>محصولات به‌زودی اضافه می‌شوند</strong><p>در حال حاضر محصولی برای خرید در فروشگاه ثبت نشده است.</p></div></div>
+                <div class="vt-empty-products"><span class="vt-empty-icon"><?php vt_icon( 'bag' ); ?></span><div><strong>هنوز محصولی در فروشگاه نیست</strong><p>برای مشاهدهٔ محصولات بعداً دوباره سر بزنید.</p></div></div>
             <?php endif; ?>
         </div>
     </section>
@@ -106,12 +108,12 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
     <section class="nt-section nt-collections" aria-labelledby="vt-collections-title">
         <div class="vt-container">
             <div class="nt-head" data-reveal>
-                <div><p class="nt-eyebrow">تجهیزات آفرود</p><h2 id="vt-collections-title">برای راکب و موتور</h2></div>
-                <a class="nt-link" href="<?php echo esc_url( vt_shop_url() ); ?>">همه تجهیزات <?php vt_icon( 'arrow' ); ?></a>
+                <div><p class="nt-eyebrow">تجهیزات آفرود</p><h2 id="vt-collections-title">تجهیزات راکب و موتور</h2></div>
+                <a class="nt-link" href="<?php echo esc_url( vt_shop_url() ); ?>">همهٔ تجهیزات <?php vt_icon( 'arrow' ); ?></a>
             </div>
             <div class="nt-collection-grid">
                 <a class="nt-collection nt-collection-main" href="<?php echo esc_url( vt_category_url( 'helmets' ) ); ?>" data-reveal>
-                    <span class="nt-collection-copy"><small>تجهیزات راکب</small><strong>آمادهٔ مسیر شو</strong><span>کلاه کاسکت برای سواری در مسیرهای خاکی</span><b>دیدن کلاه‌ها <?php vt_icon( 'arrow' ); ?></b></span>
+                    <span class="nt-collection-copy"><small>تجهیزات راکب</small><strong>کلاه کاسکت</strong><span>کلاه کاسکت برای سواری در مسیرهای خاکی</span><b>دیدن کلاه‌ها <?php vt_icon( 'arrow' ); ?></b></span>
                     <img src="<?php echo esc_url( vt_image_url( 'cutout-helmet.webp' ) ); ?>" alt="" width="512" height="512" loading="lazy">
                 </a>
                 <a class="nt-collection" href="<?php echo esc_url( vt_category_url( 'goggles' ) ); ?>" data-reveal>
@@ -130,10 +132,10 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
         <img class="nt-finish-image" src="<?php echo esc_url( vt_image_url( 'enduro-hero.jpg' ) ); ?>" alt="" width="1536" height="1024" loading="lazy">
         <div class="nt-finish-flag" aria-hidden="true"></div>
         <div class="vt-container nt-finish-inner" data-reveal>
-            <div><p class="nt-eyebrow">موتو وحید</p><h2 id="vt-finish-title">مسیر بعدی منتظرته.</h2><p>تجهیزات تریل، اندرو و آفرود را در فروشگاه ببین.</p></div>
+            <div><p class="nt-eyebrow">موتو وحید</p><h2 id="vt-finish-title">برای مسیر بعدی آماده شوید</h2><p>تجهیزات تریل، اندرو و آفرود را در فروشگاه ببینید.</p></div>
             <div class="nt-actions">
                 <a class="nt-btn" href="<?php echo esc_url( vt_shop_url() ); ?>"><span>ورود به فروشگاه</span> <?php vt_icon( 'arrow' ); ?></a>
-                <?php if ( $whatsapp ) : ?><a class="nt-btn nt-btn-ghost" href="<?php echo esc_url( 'https://wa.me/' . $whatsapp ); ?>">گفتگو در واتساپ</a><?php endif; ?>
+                <?php if ( $whatsapp ) : ?><a class="nt-btn nt-btn-ghost" href="<?php echo esc_url( 'https://wa.me/' . $whatsapp ); ?>">گفت‌وگو در واتساپ</a><?php endif; ?>
             </div>
         </div>
     </section>

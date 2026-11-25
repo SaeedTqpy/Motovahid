@@ -6,8 +6,8 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'VT_HERO_TITLE', 'برای مسیرهای خارج از جاده.' );
-define( 'VT_HERO_DESCRIPTION', 'از کلاه و تجهیزات ایمنی تا قطعات فنی موتور؛ برای تریل، اندرو و مسیرهای خاکی آماده شو.' );
+define( 'VT_HERO_TITLE', 'آمادهٔ مسیرهای فراتر از جاده' );
+define( 'VT_HERO_DESCRIPTION', 'از کلاه و پوشاک موتورسواری تا تجهیزات ایمنی و قطعات موتور، تجهیزات موردنیاز مسیر را اینجا پیدا کنید.' );
 define( 'VT_ANNOUNCEMENT', 'فروشگاه تخصصی تجهیزات موتور تریل و اندرو' );
 
 function vt_setup() {
@@ -117,10 +117,17 @@ function vt_persian_price_html( $html ) {
     return implode( '', $parts );
 }
 
+/** Use the brand image as a fallback when no site icon is set in WordPress. */
+function vt_default_site_icon() {
+    if ( has_site_icon() ) { return; }
+    printf( '<link rel="icon" href="%s" type="image/jpeg">\n', esc_url( vt_image_url( 'motovahid-logo.jpg' ) ) );
+}
+add_action( 'wp_head', 'vt_default_site_icon' );
+
 function vt_brand() {
     ?>
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-brand" aria-label="موتو وحید، صفحه اصلی">
-        <span class="vt-brand-symbol" aria-hidden="true">M</span>
+        <img class="vt-brand-logo" src="<?php echo esc_url( vt_image_url( 'motovahid-logo.jpg' ) ); ?>" alt="" width="72" height="48">
         <span class="vt-brand-copy"><strong>موتو وحید</strong><small lang="en" dir="ltr">MOTOVAHID</small></span>
     </a>
     <?php
@@ -184,6 +191,8 @@ function vt_account_url() { return vt_has_woocommerce() ? wc_get_page_permalink(
 
 function vt_icon( $name, $class = '' ) {
     $paths = array(
+        'heart' => '<path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/>',
+        'eye' => '<path d="M2 12s3.5-6.5 10-6.5 10 6.5 10 6.5-3.5 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
         'bag' => '<path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/>',
         'home' => '<path d="m3 11 9-8 9 8M5 10v10h14V10m-9 10v-6h4v6"/>',
         'user' => '<circle cx="12" cy="8" r="3.3"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/>',
@@ -204,6 +213,22 @@ function vt_icon( $name, $class = '' ) {
     );
     if ( ! isset( $paths[ $name ] ) ) { return; }
     echo '<svg class="vt-icon ' . esc_attr( $class ) . '" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' . $paths[ $name ] . '</svg>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+
+/** Product-card controls; preserve WooCommerce's native add-to-cart behavior. */
+function vt_product_card_actions( $item ) {
+    global $product;
+    $previous_product = $product;
+    $product = $item;
+    $url = get_permalink( $item->get_id() );
+    ?>
+    <div class="vt-card-quick-actions">
+        <button type="button" class="vt-card-like" data-vt-like="<?php echo esc_attr( $item->get_id() ); ?>" aria-label="<?php echo esc_attr( 'پسندیدن ' . $item->get_name() ); ?>" aria-pressed="false" title="پسندیدن در این مرورگر" hidden><?php vt_icon( 'heart' ); ?></button>
+        <a class="vt-card-view" href="<?php echo esc_url( $url ); ?>" aria-label="<?php echo esc_attr( 'مشاهده ' . $item->get_name() ); ?>" title="مشاهده محصول"><?php vt_icon( 'eye' ); ?></a>
+    </div>
+    <div class="vt-card-purchase vt-product-add"><?php woocommerce_template_loop_add_to_cart(); ?></div>
+    <?php
+    $product = $previous_product;
 }
 
 function vt_product_art( $product ) {

@@ -193,7 +193,7 @@
   border-radius: 7px;
   background: transparent;
   color: var(--ink);
-  font: 700 19px/1 Arial, sans-serif;
+  font: 700 19px/1 Dastkhat, Vazirmatn, Tahoma, Arial, sans-serif;
 }
 .vt-quantity-step:hover:enabled { color: var(--accent-text); background: #fff0e7; }
 .vt-quantity-step:disabled { opacity: .35; cursor: default; }
@@ -322,3 +322,12 @@
   .single-product .woocommerce-message::before { right: 14px; }
   .single-product .woocommerce-message .button { width: 100%; margin: 0; }
 }
+
+/* Visible product attributes, using WooCommerce's own product data. */
+.vt-pdp-specs { margin: 18px 0 22px; }
+.vt-pdp-specs h2 { margin: 0 0 10px; color: var(--ink); font-size: 15px; line-height: 1.6; font-weight: 850; }
+.vt-pdp-specs-list { margin: 0; }
+.vt-pdp-specs-row { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 9px 0; border-bottom: 1px dashed #deded9; font-size: 14px; line-height: 1.7; }
+.vt-pdp-specs-row dt { flex: 0 0 auto; color: #5d655f; font-weight: 600; }
+.vt-pdp-specs-row dd { margin: 0; color: #202622; font-weight: 750; text-align: end; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .vt-pdp-specs { margin: 16px 0 18px; } .vt-pdp-specs-row { gap: 12px; font-size: 13px; } }

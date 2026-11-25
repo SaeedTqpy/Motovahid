@@ -9,6 +9,14 @@ Requires PHP: 8.0
 Text Domain: vahidtuning
 License: GPL-2.0-or-later
 */
+/* Dastkhat Bar, by Dastyar and contributors, SIL Open Font License 1.1. */
+@font-face {
+  font-family: Dastkhat;
+  src: url("assets/fonts/dastkhat-bar-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
 @font-face {
   font-family: Vazirmatn;
   src: url("assets/fonts/vazirmatn-latin.woff2") format("woff2");
@@ -48,7 +56,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--canvas);
-  font: 400 15px/1.85 Vazirmatn, Tahoma, Arial, sans-serif;
+  font: 400 15px/1.85 Dastkhat, Vazirmatn, Tahoma, Arial, sans-serif;
   direction: rtl;
   -webkit-font-smoothing: antialiased;
 }
@@ -75,7 +83,7 @@ img { height: auto; vertical-align: middle; }
 
 .vt-announcement { color: #efe8e0; background: #211f1d; font-size: 11px; }
 .vt-announcement .vt-container { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 34px; }
-.vt-top-label { display: flex; align-items: center; gap: 8px; font: 700 9px/1 Arial, sans-serif; letter-spacing: .14em; }
+.vt-top-label { display: flex; align-items: center; gap: 8px; font: 700 9px/1 Dastkhat, Vazirmatn, Tahoma, Arial, sans-serif; letter-spacing: .14em; }
 .vt-top-label i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .vt-header { background: var(--paper); border-bottom: 1px solid var(--line); position: relative; z-index: 10; }
 .vt-header-inner { min-height: 83px; display: grid; grid-template-columns: max-content minmax(180px, 1fr) max-content; align-items: center; gap: clamp(18px, 5vw, 76px); }
@@ -88,12 +96,12 @@ img { height: auto; vertical-align: middle; }
   color: #211812;
   background: var(--accent);
   clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%);
-  font: italic 900 32px/1 Arial, sans-serif;
+  font: italic 900 32px/1 Dastkhat, Vazirmatn, Tahoma, Arial, sans-serif;
   padding-inline-end: 2px;
 }
 .vt-brand-copy { display: grid; gap: 3px; line-height: 1.3; }
 .vt-brand-copy strong { font-weight: 900; font-size: 20px; }
-.vt-brand-copy small { font: 800 9px/1 Arial, sans-serif; letter-spacing: .19em; color: var(--muted); text-align: right; }
+.vt-brand-copy small { font: 800 9px/1 Dastkhat, Vazirmatn, Tahoma, Arial, sans-serif; letter-spacing: .19em; color: var(--muted); text-align: right; }
 .vt-search-form {
   display: flex;
   align-items: stretch;
@@ -176,7 +184,7 @@ img { height: auto; vertical-align: middle; }
   border: 1px solid transparent;
   border-radius: 9px;
   padding: 9px 17px;
-  font: 800 13px/1.5 Vazirmatn, Tahoma, sans-serif;
+  font: 800 13px/1.5 Dastkhat, Vazirmatn, Tahoma, sans-serif;
   transition: background .2s, color .2s, border-color .2s;
 }
 .vt-btn .vt-icon { width: 18px; height: 18px; }
@@ -382,7 +390,7 @@ ul.vt-product-grid li.vt-product-card {
   justify-content: center;
   min-height: 44px;
   border-radius: 8px;
-  font: 800 13px/1.5 Vazirmatn, Tahoma, sans-serif;
+  font: 800 13px/1.5 Dastkhat, Vazirmatn, Tahoma, sans-serif;
   background: var(--accent);
   color: #24150e;
 }

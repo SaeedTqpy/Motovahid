@@ -5,7 +5,7 @@ $is_product_search = vt_has_woocommerce() && ( 'product' === get_query_var( 'pos
 ?>
 <main id="main-content" class="vt-page vt-container">
     <div class="vt-page-head">
-        <h1>نتایج جستجو برای «<?php echo esc_html( get_search_query() ); ?>»</h1>
+        <h1>نتایج جست‌وجو برای «<?php echo esc_html( get_search_query() ); ?>»</h1>
     </div>
     <?php if ( have_posts() ) : ?>
         <?php if ( $is_product_search ) : ?>
@@ -24,7 +24,7 @@ $is_product_search = vt_has_woocommerce() && ( 'product' === get_query_var( 'pos
         <?php endif; ?>
         <?php the_posts_pagination(); ?>
     <?php else : ?>
-        <div class="vt-empty-products"><strong>چیزی پیدا نشد.</strong><p>عبارت دیگری را امتحان کن یا تجهیزات موجود را ببین.</p><a class="vt-btn vt-btn-primary" href="<?php echo esc_url( vt_shop_url() ); ?>">مشاهده فروشگاه</a></div>
+        <div class="vt-empty-products"><strong>نتیجه‌ای پیدا نشد.</strong><p>عبارت دیگری را جست‌وجو کنید یا محصولات فروشگاه را ببینید.</p><a class="vt-btn vt-btn-primary" href="<?php echo esc_url( vt_shop_url() ); ?>">مشاهده فروشگاه</a></div>
     <?php endif; ?>
 </main>
 <?php get_footer(); ?>

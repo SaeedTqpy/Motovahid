@@ -30,12 +30,12 @@ $category_links = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' =>
 ?>
 <header class="woocommerce-products-header vt-catalog-header">
     <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-        <h1 class="woocommerce-products-header__title page-title"><?php if ( is_search() ) : ?>نتایج جستجو برای «<?php echo esc_html( get_search_query( false ) ); ?>»<?php elseif ( is_shop() ) : ?>فروشگاه تجهیزات<?php else : ?><?php woocommerce_page_title(); ?><?php endif; ?></h1>
+        <h1 class="woocommerce-products-header__title page-title"><?php if ( is_search() ) : ?>نتایج جست‌وجو برای «<?php echo esc_html( get_search_query( false ) ); ?>»<?php elseif ( is_shop() ) : ?>فروشگاه تجهیزات<?php else : ?><?php woocommerce_page_title(); ?><?php endif; ?></h1>
     <?php endif; ?>
     <?php do_action( 'woocommerce_archive_description' ); ?>
     <?php if ( ! is_wp_error( $category_links ) && $category_links ) : ?>
         <nav class="vt-catalog-categories" aria-label="دسته‌بندی محصولات">
-            <a href="<?php echo esc_url( vt_shop_url() ); ?>"<?php if ( is_shop() && ! is_search() ) : ?> aria-current="page"<?php endif; ?>>همه محصولات</a>
+            <a href="<?php echo esc_url( vt_shop_url() ); ?>"<?php if ( is_shop() && ! is_search() ) : ?> aria-current="page"<?php endif; ?>>همهٔ محصولات</a>
             <?php foreach ( $category_links as $category ) :
                 $category_link = get_term_link( $category );
                 if ( is_wp_error( $category_link ) ) { continue; }
@@ -53,7 +53,7 @@ $category_links = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' =>
                 <section class="vt-sidebar-section" aria-labelledby="vt-sidebar-categories">
                     <h2 id="vt-sidebar-categories">دسته‌بندی محصولات</h2>
                     <ul class="vt-side-list">
-                        <li><a href="<?php echo esc_url( vt_shop_url() ); ?>"<?php if ( is_shop() && ! is_search() ) : ?> aria-current="page"<?php endif; ?>>همه محصولات <?php vt_icon( 'chevron' ); ?></a></li>
+                        <li><a href="<?php echo esc_url( vt_shop_url() ); ?>"<?php if ( is_shop() && ! is_search() ) : ?> aria-current="page"<?php endif; ?>>همهٔ محصولات <?php vt_icon( 'chevron' ); ?></a></li>
                         <?php if ( ! is_wp_error( $category_links ) ) : foreach ( $category_links as $category ) :
                             $category_link = get_term_link( $category );
                             if ( is_wp_error( $category_link ) ) { continue; }
@@ -111,8 +111,8 @@ $category_links = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' =>
             <div>
                 <strong>محصولی پیدا نشد</strong>
                 <?php if ( is_search() || $has_price_filter ) : ?>
-                    <p>عبارت جستجو یا محدودهٔ قیمت را تغییر بده.</p>
-                    <a class="vt-text-link" href="<?php echo esc_url( vt_shop_url() ); ?>">همه محصولات <?php vt_icon( 'arrow' ); ?></a>
+                    <p>عبارت جست‌وجو یا محدودهٔ قیمت را تغییر دهید.</p>
+                    <a class="vt-text-link" href="<?php echo esc_url( vt_shop_url() ); ?>">همهٔ محصولات <?php vt_icon( 'arrow' ); ?></a>
                 <?php else : ?>
                     <p>هنوز محصولی در این بخش ثبت نشده است.</p>
                 <?php endif; ?>

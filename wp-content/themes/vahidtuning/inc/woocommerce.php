@@ -64,6 +64,30 @@ function vt_pdp_price() {
     <?php
 }
 
+/** Display only attributes marked visible in WooCommerce. */
+function vt_pdp_product_attributes() {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    $rows = array();
+    foreach ( $product->get_attributes() as $attribute ) {
+        if ( ! $attribute->get_visible() ) { continue; }
+        $value = $product->get_attribute( $attribute->get_name() );
+        if ( '' === trim( $value ) ) { continue; }
+        $rows[] = array( wc_attribute_label( $attribute->get_name(), $product ), $value );
+    }
+    if ( ! $rows ) { return; }
+    ?>
+    <section class="vt-pdp-specs" aria-labelledby="vt-pdp-specs-title">
+        <h2 id="vt-pdp-specs-title">مشخصات محصول</h2>
+        <dl class="vt-pdp-specs-list">
+            <?php foreach ( $rows as $row ) : ?>
+                <div class="vt-pdp-specs-row"><dt><?php echo esc_html( $row[0] ); ?></dt><dd><?php echo esc_html( $row[1] ); ?></dd></div>
+            <?php endforeach; ?>
+        </dl>
+    </section>
+    <?php
+}
+
 function vt_pdp_open_purchase() {
     echo '<div id="vt-pdp-purchase" class="vt-pdp-purchase" tabindex="-1">';
 }
@@ -104,6 +128,7 @@ add_action( 'wp', function() {
     add_action( 'woocommerce_before_single_product_summary', 'vt_pdp_open_gallery', 0 );
     add_action( 'woocommerce_before_single_product_summary', 'vt_pdp_close_gallery', 999 );
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_category', 3 );
+    add_action( 'woocommerce_single_product_summary', 'vt_pdp_product_attributes', 22 );
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_open_purchase', 24 );
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_price', 25 );
     add_action( 'woocommerce_single_product_summary', 'vt_pdp_close_purchase', 31 );
@@ -148,7 +173,7 @@ add_filter( 'woocommerce_related_products', function( $related, $product_id, $ar
 
 // Untranslated WooCommerce string fallbacks for important storefront actions.
 add_filter( 'woocommerce_product_add_to_cart_text', function( $text, $product ) {
-    if ( $product->is_type( 'variable' ) && $product->is_in_stock() ) { return 'انتخاب گزینه‌ها'; }
+    if ( $product->is_type( 'variable' ) && $product->is_in_stock() ) { return 'افزودن به سبد'; }
     if ( $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() ) { return 'افزودن به سبد'; }
     if ( $product->is_type( array( 'simple', 'variable', 'grouped' ) ) ) { return 'مشاهده محصول'; }
     return $text;
@@ -211,3 +236,32 @@ add_filter( 'woocommerce_get_stock_html', function( $html ) {
 } );
 
 require_once __DIR__ . '/purchase.php';
+
+// Mark only successful add-to-cart notices; the native notice remains a no-JS fallback.
+add_filter( 'wc_add_to_cart_message_html', function( $message ) {
+    return '<span class="vt-cart-added-marker" aria-hidden="true"></span>' . $message;
+} );
+
+/** Preselect an available combination without changing saved WooCommerce defaults. */
+add_filter( 'woocommerce_product_get_default_attributes', function( $defaults, $product ) {
+    if ( ! $product instanceof WC_Product_Variable || is_admin() || ! function_exists( 'is_product' ) || ! is_product() ) { return $defaults; }
+    $attributes = $product->get_variation_attributes();
+    if ( ! $attributes ) { return $defaults; }
+    foreach ( $product->get_children() as $variation_id ) {
+        $variation = wc_get_product( $variation_id );
+        if ( ! $variation || ! $variation->variation_is_visible() || ! $variation->is_purchasable() || ! $variation->is_in_stock() ) { continue; }
+        $values = $variation->get_attributes();
+        $candidate = $defaults;
+        foreach ( $attributes as $name => $options ) {
+            $key = sanitize_title( $name );
+            $value = $values[ $key ] ?? '';
+            $preferred = $defaults[ $key ] ?? '';
+            if ( '' !== $preferred && ( ( '' !== $value && $preferred !== $value ) || ! in_array( $preferred, $options, true ) ) ) { continue 2; }
+            if ( '' === $value ) { $value = '' !== $preferred ? $preferred : ( $options[0] ?? '' ); }
+            if ( '' === $value ) { continue 2; }
+            $candidate[ $key ] = $value;
+        }
+        return $candidate;
+    }
+    return $defaults;
+}, 10, 2 );
