@@ -446,3 +446,17 @@ body.home { background: var(--nt-bg); color: var(--nt-text); }
   .nt-bento .nt-tile .nt-tile-image { display: block; }
   .nt-bento .nt-tile .nt-tile-image img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; object-fit: contain; }
 }
+
+/* Constrain category artwork to its allotted area on larger screens. */
+@media (min-width: 761px) {
+  .nt-bento .nt-tile-image { display: block; }
+  .nt-bento .nt-tile-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+  }
+}

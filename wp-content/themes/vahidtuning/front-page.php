@@ -19,7 +19,7 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
         <div class="vt-container nt-hero-inner">
             <div class="nt-hero-copy">
                 <p class="nt-kicker" data-reveal><span class="nt-plate" lang="en" dir="ltr">VT</span> تجهیزات تریل، اندرو و آفرود</p>
-                <h1 id="vt-home-title" data-reveal><?php if ( VT_HERO_TITLE === $hero_title ) : ?><span>آمادهٔ مسیرهای</span><em>فراتر از جاده</em><?php else : ?><?php echo esc_html( $hero_title ); ?><?php endif; ?></h1>
+                <h1 id="vt-home-title" data-reveal><?php if ( VT_HERO_TITLE === $hero_title ) : ?><span>آماده مسیرهای</span><em>فراتر از جاده</em><?php else : ?><?php echo esc_html( $hero_title ); ?><?php endif; ?></h1>
                 <p class="nt-hero-lead" data-reveal><?php echo esc_html( get_theme_mod( 'vt_hero_description', VT_HERO_DESCRIPTION ) ); ?></p>
                 <div class="nt-actions" data-reveal>
                     <a class="nt-btn" href="<?php echo esc_url( vt_shop_url() ); ?>"><span>مشاهده محصولات</span> <?php vt_icon( 'arrow' ); ?></a>
