@@ -12,7 +12,7 @@ foreach ( $category_catalog as $category ) { $ticker[] = $category['name']; }
 <main id="main-content" class="vt-home nt-home">
     <section class="nt-hero" aria-labelledby="vt-home-title">
         <div class="nt-hero-media" aria-hidden="true">
-            <img src="<?php echo esc_url( vt_image_url( 'enduro-hero.jpg' ) ); ?>" alt="" width="1536" height="1024" fetchpriority="high">
+            <img src="<?php echo esc_url( vt_image_url( 'hero-blue.webp' ) ); ?>" alt="" width="1916" height="821" fetchpriority="high">
         </div>
         <span class="nt-topo" aria-hidden="true"></span>
         <span class="nt-hero-watermark" aria-hidden="true" lang="en" dir="ltr">ENDURO</span>
