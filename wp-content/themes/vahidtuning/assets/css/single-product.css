@@ -123,7 +123,7 @@
   display: inline-block;
   padding: 3px 8px;
   border-radius: 7px;
-  background: #ffeadc;
+  background: #dce9ff;
   color: var(--accent-text);
   font-size: 11px;
 }
@@ -195,7 +195,7 @@
   color: var(--ink);
   font: 700 19px/1 Dastkhat, Vazirmatn, Tahoma, Arial, sans-serif;
 }
-.vt-quantity-step:hover:enabled { color: var(--accent-text); background: #fff0e7; }
+.vt-quantity-step:hover:enabled { color: var(--accent-text); background: #e7f0ff; }
 .vt-quantity-step:disabled { opacity: .35; cursor: default; }
 .woocommerce div.product .vt-pdp-purchase form.cart .variations { width: 100%; margin-bottom: 12px; }
 .woocommerce div.product .vt-pdp-purchase form.cart .variations select { width: 100%; margin: 0; }

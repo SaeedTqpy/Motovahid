@@ -5,6 +5,9 @@ $phone = get_theme_mod( 'vt_phone', '' );
 $instagram = get_theme_mod( 'vt_instagram', '' );
 $whatsapp = preg_replace( '/[^0-9]/', '', get_theme_mod( 'vt_whatsapp', '' ) );
 $address = get_theme_mod( 'vt_address', '' );
+$map_location = trim( (string) get_theme_mod( 'vt_map_location', '' ) );
+if ( '' === $map_location ) { $map_location = trim( (string) $address ); }
+$map_query = rawurlencode( $map_location );
 ?>
 <footer class="vt-footer">
     <div class="vt-container">
@@ -34,6 +37,17 @@ $address = get_theme_mod( 'vt_address', '' );
                     <?php if ( $whatsapp ) : ?><a href="<?php echo esc_url( 'https://wa.me/' . $whatsapp ); ?>">واتساپ</a><?php endif; ?>
                 </div>
             <?php endif; ?>
+            <div class="vt-footer-column vt-footer-map">
+                <h3>موقعیت فروشگاه</h3>
+                <?php if ( '' !== $map_location ) : ?>
+                    <div class="vt-footer-map-frame">
+                        <iframe title="موقعیت فروشگاه موتو وحید در نقشه" src="<?php echo esc_url( 'https://maps.google.com/maps?q=' . $map_query . '&output=embed' ); ?>" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <a class="vt-footer-map-link" href="<?php echo esc_url( 'https://www.google.com/maps/search/?api=1&query=' . $map_query ); ?>" target="_blank" rel="noopener noreferrer">مشاهده در گوگل مپ ↗</a>
+                <?php else : ?>
+                    <div class="vt-footer-map-placeholder"><span aria-hidden="true">⌖</span><p>آدرس فروشگاه به‌زودی اعلام می‌شود.</p></div>
+                <?php endif; ?>
+            </div>
         </div>
         <div class="vt-footer-bottom">© <?php echo esc_html( vt_format_number( wp_date( 'Y' ) ) ); ?> موتو وحید</div>
     </div>

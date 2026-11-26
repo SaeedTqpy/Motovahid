@@ -30,7 +30,7 @@ body:is(.woocommerce-cart, .woocommerce-checkout) .vt-page {
 .vt-purchase-progress :is(a, span)[aria-current] {
   padding: 3px 8px;
   border-radius: 7px;
-  background: #ffecdf;
+  background: #dfebff;
   color: var(--accent-text);
 }
 .vt-purchase-progress a:hover { color: var(--accent-text); }
@@ -95,7 +95,7 @@ body:is(.woocommerce-cart, .woocommerce-checkout) .vt-page {
   background: var(--accent-hover);
 }
 .vt-purchase .wc-block-components-notice-banner { border-radius: 10px; line-height: 1.8; }
-.vt-purchase .wc-block-components-notice-banner.is-error { background-color: #fff2ea; border-color: #dc9984; }
+.vt-purchase .wc-block-components-notice-banner.is-error { background-color: #eaf2ff; border-color: #2f5ca7; }
 
 .vt-purchase .wc-block-cart-items {
   margin-block: 0;
@@ -120,7 +120,7 @@ body:is(.woocommerce-cart, .woocommerce-checkout) .vt-page {
 .vt-purchase .wc-block-components-quantity-selector :is(button, input) { min-height: 41px; font-size: 15px; }
 .vt-purchase .wc-block-components-quantity-selector button { min-width: 33px; }
 .vt-purchase .wc-block-cart-item__remove-link { min-height: 39px; color: var(--accent-text); font-size: 12px; }
-.vt-purchase .wc-block-components-sale-badge { padding: 4px 6px; border-radius: 6px; color: var(--accent-text); background: #fff1e7; }
+.vt-purchase .wc-block-components-sale-badge { padding: 4px 6px; border-radius: 6px; color: var(--accent-text); background: #e7f0ff; }
 .vt-purchase .wp-block-woocommerce-empty-cart-block > .wp-block-heading { color: var(--ink); }
 
 .vt-purchase .wc-block-checkout__form > .wc-block-components-checkout-step {

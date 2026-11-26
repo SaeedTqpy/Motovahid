@@ -4,15 +4,15 @@
   --warm: #eeeae1;
   --line: #e5e0d7;
   --ink: #1d1c18;
-  --accent: #ff793c;
-  --accent-text: #99300f;
+  --accent: #1554b8;
+  --accent-text: #17458d;
   --dock-height: 62px;
 }
 
 .vt-header-inner { min-height: 76px; }
 .vt-search-form { border-color: var(--line); background: #f7f6f2; }
 .vt-search-form button { margin: 3px; background: #fff; border: 1px solid var(--line); width: 40px; }
-.vt-search-form button:hover { background: #fff0e8; }
+.vt-search-form button:hover { background: #e8f1ff; }
 .vt-nav-shop[aria-current], .vt-menu a[aria-current] { text-decoration: underline; text-underline-offset: 8px; }
 .vt-home { padding-top: clamp(13px, 2vw, 27px); }
 .vt-home-lead {
@@ -71,7 +71,7 @@
   background: linear-gradient(0deg, #e8dfd3 0%, #ede4d8f2 15%, transparent 54%);
 }
 .vt-feature:hover img { transform: scale(1.045); }
-.vt-feature-parts { align-items: center; background: #25231e; color: #fff6ec; }
+.vt-feature-parts { align-items: center; background: #25231e; color: #ecf3ff; }
 .vt-feature-parts::after {
   content: "";
   position: absolute;
@@ -170,7 +170,7 @@
 }
 .vt-price-disclosure summary::-webkit-details-marker { display: none; }
 .vt-price-disclosure summary .vt-icon { width: 17px; height: 17px; }
-.vt-price-disclosure[open] summary { background: #fff0e7; border-color: #e0a68c; }
+.vt-price-disclosure[open] summary { background: #e7f0ff; border-color: #2d5ba9; }
 .vt-filter-active-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-text); }
 .vt-price-disclosure form {
   position: absolute;
@@ -259,7 +259,7 @@
   }
   .vt-mobile-dock a { display: grid; align-content: center; justify-items: center; gap: 1px; padding-block: 4px; color: var(--muted); font-size: 11px; font-weight: 750; }
   .vt-mobile-dock a[aria-current], .vt-mobile-dock a:hover { color: var(--accent-text); }
-  .vt-mobile-dock a[aria-current] .vt-icon { background: #ffede1; border-radius: 7px; }
+  .vt-mobile-dock a[aria-current] .vt-icon { background: #e1ecff; border-radius: 7px; }
   .vt-mobile-dock .vt-icon { width: 29px; height: 26px; padding: 3px; }
   .woocommerce-cart .vt-mobile-dock, .woocommerce-checkout .vt-mobile-dock { display: none; }
 }

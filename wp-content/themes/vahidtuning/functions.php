@@ -87,6 +87,7 @@ function vt_customize( $customizer ) {
         'vt_instagram' => array( 'لینک اینستاگرام', '', 'url' ),
         'vt_whatsapp' => array( 'شماره واتساپ با کد کشور (بدون +)', '', 'text' ),
         'vt_address' => array( 'نشانی فروشگاه', '', 'textarea' ),
+        'vt_map_location' => array( 'آدرس یا مختصات فروشگاه برای نمایش در نقشه', '', 'text' ),
         'vt_announcement' => array( 'متن نوار اطلاع‌رسانی', VT_ANNOUNCEMENT, 'text' ),
     );
     foreach ( $settings as $id => $meta ) {
@@ -128,7 +129,7 @@ function vt_brand() {
     ?>
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vt-brand" aria-label="موتو وحید، صفحه اصلی">
         <img class="vt-brand-logo" src="<?php echo esc_url( vt_image_url( 'motovahid-logo.jpg' ) ); ?>" alt="" width="72" height="48">
-        <span class="vt-brand-copy"><strong>موتو وحید</strong><small lang="en" dir="ltr">MOTOVAHID</small></span>
+        <span class="vt-brand-copy"><strong>موتو وحید</strong><img class="vt-brand-wordmark" src="<?php echo esc_url( vt_image_url( 'motovahid-wordmark.png' ) ); ?>" alt="" width="1400" height="174"></span>
     </a>
     <?php
 }

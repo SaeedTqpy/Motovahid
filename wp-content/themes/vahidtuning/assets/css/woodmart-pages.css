@@ -55,7 +55,7 @@
 }
 .vt-nav-catalog-menu a:last-child { border-bottom: 0; }
 .vt-nav-catalog-menu a:hover,
-.vt-nav-catalog-menu a:focus-visible { color: #bb5017; background: #fff5ed; }
+.vt-nav-catalog-menu a:focus-visible { color: #1754bb; background: #edf4ff; }
 .vt-nav-catalog-menu .vt-icon { width: 14px; height: 14px; color: #848c97; }
 .vt-nav-catalog-menu .vt-nav-all-products { font-weight: 900; }
 .vt-menu .menu-item-has-children > a::after {
@@ -115,7 +115,7 @@
 .vt-sidebar-section h2 {
   margin: 0 0 14px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #ff9b65;
+  border-bottom: 2px solid #004fd6;
   width: fit-content;
   font-size: 15px;
   font-weight: 900;
@@ -163,7 +163,7 @@
   text-align: right;
 }
 .vt-sidebar-price-form .vt-btn { width: 100%; min-height: 45px; border-radius: 7px; font-size: 12px; }
-.vt-sidebar-reset { width: fit-content; justify-self: center; color: #aa461b; font-size: 11px; font-weight: 850; }
+.vt-sidebar-reset { width: fit-content; justify-self: center; color: #1b50aa; font-size: 11px; font-weight: 850; }
 .vt-sidebar-reset:hover { text-decoration: underline; }
 .vt-woodmart-shop-layout .vt-shop-toolbar {
   z-index: 2;
@@ -239,7 +239,7 @@
   border-radius: 0;
   background: transparent;
 }
-.single-product .vt-pdp-category { margin: 5px 0 10px; font-size: 12px; color: #a64a20; }
+.single-product .vt-pdp-category { margin: 5px 0 10px; font-size: 12px; color: #2052a6; }
 .woocommerce div.product .vt-pdp-hero .product_title {
   margin: 0 0 12px;
   color: #222934;
@@ -269,13 +269,13 @@
   background: #fafbfc;
 }
 .single-product .vt-pdp-price-heading { margin-bottom: 7px; font-size: 12px; color: #6b7481; }
-.single-product .vt-pdp-price-heading strong { color: #b34519; background: #fff0e5; }
+.single-product .vt-pdp-price-heading strong { color: #1952b3; background: #e5efff; }
 .single-product .vt-pdp-price-amount {
   margin-bottom: 5px;
   color: #232b35;
   font-size: clamp(22px, 2.4vw, 31px);
 }
-.single-product .vt-pdp-price-amount ins { color: #cb4d19; }
+.single-product .vt-pdp-price-amount ins { color: #1755bf; }
 .single-product .vt-pdp-price + form.cart { margin-top: 17px; padding-top: 17px; border-top: 1px solid #e8eaed; }
 .single-product .vt-pdp-price + .stock { border-top-color: #e8eaed; }
 .single-product .vt-pdp-purchase .stock { color: #2c754d; }
@@ -319,7 +319,7 @@
   font-size: 11px;
   line-height: 1.6;
 }
-.single-product .vt-pdp-utility a:hover { background: #fff1e6; color: var(--accent-text); }
+.single-product .vt-pdp-utility a:hover { background: #e6efff; color: var(--accent-text); }
 .single-product .vt-pdp-utility .vt-icon { flex: 0 0 auto; width: 18px; height: 18px; }
 .single-product .vt-pdp-hero .product_meta { padding-top: 8px; margin-top: 10px; font-size: 11px; border-top: 0; }
 .single-product .woocommerce-tabs { margin-top: clamp(45px, 5.7vw, 78px); }
@@ -385,7 +385,7 @@
 body:is(.woocommerce-cart, .woocommerce-checkout) .vt-page { padding-top: 29px; }
 .vt-purchase-progress ol { margin-bottom: 22px; gap: 11px; }
 .vt-purchase-progress li { font-size: 12px; }
-.vt-purchase-progress :is(a, span)[aria-current] { color: #1f2731; background: #fff0e6; }
+.vt-purchase-progress :is(a, span)[aria-current] { color: #1f2731; background: #e6efff; }
 .vt-purchase .vt-page-head h1 { font-size: clamp(27px, 3.5vw, 42px); }
 .vt-purchase .vt-entry-content { line-height: 1.85; }
 .vt-purchase .wc-block-components-sidebar-layout.is-large { gap: clamp(20px, 3vw, 38px); }
@@ -416,7 +416,7 @@ body:is(.woocommerce-cart, .woocommerce-checkout) .vt-page { padding-top: 29px; 
 .vt-purchase .wc-block-components-form .wc-blocks-components-select select:focus,
 .vt-purchase :is(.wc-block-components-textarea, .wc-block-components-text-input input):focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(255, 118, 43, .14);
+  box-shadow: 0 0 0 2px rgba(21, 84, 184, .14);
 }
 .vt-purchase .wc-block-cart__submit-container a,
 .vt-purchase .wc-block-components-checkout-place-order-button { font-weight: 900; }
@@ -468,7 +468,7 @@ body:is(.woocommerce-cart, .woocommerce-checkout) .vt-page { padding-top: 29px; 
 .woocommerce-account .woocommerce-MyAccount-navigation li:last-child { border-bottom: 0; }
 .woocommerce-account .woocommerce-MyAccount-navigation a { padding: 12px 14px; border-radius: 7px; color: #505b68; font-size: 13px; font-weight: 700; }
 .woocommerce-account .woocommerce-MyAccount-navigation .is-active a,
-.woocommerce-account .woocommerce-MyAccount-navigation a:hover { color: #bc4d17; background: #fff3e9; }
+.woocommerce-account .woocommerce-MyAccount-navigation a:hover { color: #1754bc; background: #e9f1ff; }
 .woocommerce-account .woocommerce-MyAccount-content { min-height: 330px; padding: clamp(20px, 3vw, 32px); }
 .woocommerce-account .woocommerce-MyAccount-content :is(h2,h3) { font-size: 19px; margin-bottom: 15px; }
 .woocommerce-account .woocommerce-MyAccount-content :is(table, form) { max-width: 100%; }
@@ -488,7 +488,7 @@ body:is(.woocommerce-cart, .woocommerce-checkout) .vt-page { padding-top: 29px; 
 .vt-search-result p { color: #67717e; font-size: 13px; }
 .vt-page > ul.products.vt-product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .vt-empty-products { border: 1px solid #e8ebef; background: #f9fafb; border-radius: 9px; }
-.vt-empty-icon { background: #fff0e5; border-radius: 8px; }
+.vt-empty-icon { background: #e5efff; border-radius: 8px; }
 
 /* Responsive parity for archive, product, cart, account and global navigation. */
 @media (max-width: 1150px) {
@@ -532,7 +532,7 @@ body:is(.woocommerce-cart, .woocommerce-checkout) .vt-page { padding-top: 29px; 
   .vt-purchase .wc-block-components-sidebar-layout.is-large { display: block; }
 }
 @media (max-width: 760px) {
-  .vt-nav-catalog > summary { min-height: 45px; border-radius: 7px; background: #fff2e6; }
+  .vt-nav-catalog > summary { min-height: 45px; border-radius: 7px; background: #e6efff; }
   .vt-nav-catalog-menu { position: static; width: 100%; border: 0; border-radius: 0; box-shadow: none; background: #f7f8fa; }
   .vt-nav-catalog-menu a { min-height: 42px; padding-inline: 15px; }
   .vt-woodmart-shop-layout .vt-shop-main > ul.products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
