@@ -121,7 +121,7 @@ function vt_persian_price_html( $html ) {
 /** Use the brand image as a fallback when no site icon is set in WordPress. */
 function vt_default_site_icon() {
     if ( has_site_icon() ) { return; }
-    printf( '<link rel="icon" href="%s" type="image/jpeg">\n', esc_url( vt_image_url( 'motovahid-logo.jpg' ) ) );
+    printf( '<link rel="icon" href="%s" type="image/jpeg">' . "\n", esc_url( vt_image_url( 'motovahid-logo.jpg' ) ) );
 }
 add_action( 'wp_head', 'vt_default_site_icon' );
 
