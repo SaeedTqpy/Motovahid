@@ -461,3 +461,108 @@ body.home { background: var(--nt-bg); color: var(--nt-text); }
     object-fit: contain;
   }
 }
+
+/* ═════════ Homepage polish layer ═════════
+   Every rule is scoped to homepage-only classes (.nt-home / .nt-*), and this
+   file is only enqueued on the front page, so other pages are untouched. */
+
+/* Calmer vertical rhythm between sections. */
+.nt-home .nt-section { padding-block: clamp(56px, 6.5vw, 96px); }
+.nt-home .nt-trust { padding-block: 34px 0; }
+.nt-home .nt-categories { padding-block-start: clamp(48px, 5.5vw, 80px); }
+.nt-home .nt-head { margin-bottom: clamp(24px, 3vw, 36px); }
+.nt-home .nt-head h2 { line-height: 1.3; }
+
+/* Section links read as clear secondary buttons. */
+.nt-home .nt-link {
+  gap: 10px;
+  padding: 10px 18px;
+  border: 1px solid var(--nt-line-strong);
+  border-radius: 999px;
+  background: #fff;
+  transition: color .2s, background-color .2s, border-color .2s, box-shadow .2s;
+}
+.nt-home .nt-link:hover { color: #fff; background: var(--nt-accent); border-color: var(--nt-accent); box-shadow: 0 10px 22px -12px rgba(21, 84, 184, .7); }
+.nt-home .nt-products .nt-link { background: transparent; }
+.nt-home .nt-products .nt-link:hover { background: var(--nt-accent); }
+
+/* Hero: the scroll cue floated on the photo edge; the ticker already leads the eye down. */
+.nt-home .nt-scroll-cue { display: none; }
+.nt-home .nt-hero-lead { color: #4a433c; }
+.nt-home .nt-hero .nt-btn { box-shadow: 0 14px 28px -14px rgba(21, 84, 184, .75); }
+.nt-home .nt-hero .nt-btn-ghost { box-shadow: inset 0 0 0 2px var(--nt-ink); background: rgba(255, 255, 255, .85); }
+.nt-home .nt-hero .nt-btn-ghost:hover { background: var(--nt-ink); }
+
+/* Service strip: one tidy bar instead of three loose cards with faint numbers. */
+.nt-home .nt-trust-list {
+  gap: 0;
+  background: #fff;
+  border: 1px solid var(--nt-line);
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(40, 22, 8, .03), 0 18px 40px -30px rgba(40, 22, 8, .25);
+  overflow: hidden;
+}
+.nt-home .nt-trust-list li { border: 0; border-radius: 0; background: transparent; min-height: 96px; padding: 20px 26px; transition: background-color .25s; }
+.nt-home .nt-trust-list li + li { border-inline-start: 1px solid var(--nt-line); }
+.nt-home .nt-trust-list li:hover { box-shadow: none; background: #f7faff; }
+.nt-home .nt-trust-list li > a { padding: 0; }
+.nt-home .nt-trust-num { display: none; }
+.nt-home .nt-trust-icon { width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(145deg, #f1f6ff, #e3edff); box-shadow: inset 0 0 0 1px rgba(21, 84, 184, .12); }
+.nt-home .nt-trust-list strong { margin-bottom: 2px; }
+
+/* Category tiles: quieter surface, clearer hover. */
+.nt-home .nt-tile { background: radial-gradient(circle at 35% 45%, #fff 0, #f4f1ec 72%); transition: border-color .4s, box-shadow .5s var(--nt-ease), transform .5s var(--nt-ease); }
+.nt-home .nt-tile:hover { transform: translateY(-4px); }
+.nt-home .nt-tile-copy > span { margin-top: 4px; }
+
+/* Discount rail: deeper backdrop and a crisper SALE mark. */
+.nt-home .nt-sale { background: radial-gradient(ellipse at 12% 0%, rgba(35, 100, 196, .28), transparent 55%), radial-gradient(ellipse at 95% 100%, rgba(35, 100, 196, .14), transparent 50%), #131617; }
+.nt-home .nt-sale-mark { -webkit-text-stroke: 1.5px rgba(135, 185, 255, .45); }
+.nt-home .nt-sale-card { transition: transform .4s var(--nt-ease), box-shadow .4s var(--nt-ease); }
+.nt-home .nt-sale-card:hover { transform: translateY(-6px); box-shadow: 0 28px 50px -26px rgba(0, 0, 0, .8); }
+.nt-home .nt-sale-track { padding-top: 8px; }
+.nt-home .nt-sale-footer { border-top: 1px solid rgba(255, 255, 255, .08); margin-top: 10px; }
+
+/* Finish CTA: keep the copy and buttons on the light side, clear of the photo. */
+.nt-home .nt-finish { margin-top: 0; }
+@media (min-width: 1081px) {
+  .nt-home .nt-finish-inner { flex-direction: column; align-items: flex-start; justify-content: center; gap: 28px; padding-inline: 40px 0; }
+  .nt-home .nt-finish { padding-block: clamp(80px, 9vw, 130px); }
+  .nt-home .nt-finish-inner > div:first-child { max-width: 52%; }
+  .nt-home .nt-finish h2 { font-size: clamp(34px, 3.6vw, 54px); text-wrap: balance; }
+}
+/* Tablet & phone: full-bleed photo with a dark scrim instead of a washed-out image. */
+@media (max-width: 1080px) {
+  .nt-home .nt-finish { background: #121416; }
+  .nt-home .nt-finish-image { width: 100%; opacity: 1; clip-path: none; object-position: 30% 50%; }
+  .nt-home .nt-finish::after { background: linear-gradient(270deg, rgba(14, 16, 18, .94) 0, rgba(14, 16, 18, .78) 55%, rgba(14, 16, 18, .45) 100%); }
+  .nt-home .nt-finish h2 { color: #fff; }
+  .nt-home .nt-finish p:not(.nt-eyebrow) { color: #d6dbe2; }
+  .nt-home .nt-finish .nt-eyebrow { color: #87b9ff; }
+  .nt-home .nt-finish .nt-btn-ghost { color: #fff; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .7); background: transparent; }
+  .nt-home .nt-finish .nt-btn-ghost:hover { background: #fff; color: var(--nt-ink); }
+  .nt-home .nt-finish-flag { opacity: .55; }
+}
+
+/* Keyboard focus that matches the brand. */
+.nt-home .nt-tile:focus-visible,
+.nt-home .nt-collection:focus-visible,
+.nt-home .nt-link:focus-visible,
+.nt-home .nt-btn:focus-visible,
+.nt-home .nt-sale-card a:focus-visible,
+.nt-home .nt-trust-list a:focus-visible { outline: 3px solid var(--nt-accent); outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .nt-home .nt-trust { padding-block: 22px 0; }
+  .nt-home .nt-trust-list { border-radius: 16px; }
+  .nt-home .nt-trust-list li { min-height: 78px; padding: 10px 4px; background: transparent; }
+  .nt-home .nt-trust-icon { width: 34px; height: 34px; border-radius: 10px; }
+  .nt-home .nt-head { gap: 14px; }
+  .nt-home .nt-link { padding: 8px 14px; font-size: 13px; }
+  .nt-home .nt-tile:hover { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nt-home .nt-tile, .nt-home .nt-sale-card { transition: none; }
+  .nt-home .nt-tile:hover, .nt-home .nt-sale-card:hover { transform: none; }
+}
